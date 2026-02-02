@@ -12,6 +12,26 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
+  // Skip Supabase initialization if env vars are not configured (for demo)
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    process.env.NEXT_PUBLIC_SUPABASE_URL === 'your-supabase-url' ||
+    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY === 'your-supabase-anon-key'
+  ) {
+    // Protected routes require auth, redirect to login
+    const protectedPaths = ['/dashboard']
+    const isProtectedPath = protectedPaths.some((path) =>
+      request.nextUrl.pathname.startsWith(path)
+    )
+    if (isProtectedPath) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/login'
+      return NextResponse.redirect(url)
+    }
+    return supabaseResponse
+  }
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,

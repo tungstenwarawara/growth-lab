@@ -30,13 +30,13 @@ export default async function DashboardPage({
     <div className="min-h-screen">
       <header className="border-b">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <h1 className="font-bold text-xl">Dashboard</h1>
+          <h1 className="font-bold text-xl">ダッシュボード</h1>
           <form action="/api/auth/signout" method="post">
             <button
               type="submit"
               className="text-sm font-medium text-muted-foreground hover:text-foreground"
             >
-              Sign out
+              ログアウト
             </button>
           </form>
         </div>
@@ -45,23 +45,23 @@ export default async function DashboardPage({
       <main className="container mx-auto px-4 py-8">
         {params.success && (
           <div className="mb-6 p-4 bg-green-100 border border-green-300 rounded-lg text-green-800">
-            Payment successful! Your subscription is now active.
+            お支払いが完了しました！サブスクリプションが有効になりました。
           </div>
         )}
         {params.canceled && (
           <div className="mb-6 p-4 bg-yellow-100 border border-yellow-300 rounded-lg text-yellow-800">
-            Payment was canceled. You can try again anytime.
+            お支払いがキャンセルされました。いつでも再度お試しいただけます。
           </div>
         )}
 
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-2">Welcome back!</h2>
-          <p className="text-muted-foreground">Signed in as {user.email}</p>
+          <h2 className="text-2xl font-bold mb-2">おかえりなさい！</h2>
+          <p className="text-muted-foreground">{user.email} でログイン中</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           <div className="p-6 border rounded-lg">
-            <h3 className="font-semibold mb-2">Current Plan</h3>
+            <h3 className="font-semibold mb-2">現在のプラン</h3>
             <p className="text-2xl font-bold text-primary">
               {isPro ? 'Pro' : 'Free'}
             </p>
@@ -75,25 +75,25 @@ export default async function DashboardPage({
           </div>
 
           <div className="p-6 border rounded-lg">
-            <h3 className="font-semibold mb-2">Usage</h3>
+            <h3 className="font-semibold mb-2">使用状況</h3>
             <p className="text-2xl font-bold">0 / {isPro ? '∞' : '100'}</p>
             <p className="text-sm text-muted-foreground mt-1">
-              API calls this month
+              今月のAPI呼び出し
             </p>
           </div>
 
           <div className="p-6 border rounded-lg">
-            <h3 className="font-semibold mb-2">Status</h3>
+            <h3 className="font-semibold mb-2">ステータス</h3>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="text-sm">All systems operational</span>
+              <span className="text-sm">全システム正常稼働中</span>
             </div>
           </div>
         </div>
 
         <div className="mt-8 p-6 border rounded-lg">
           <h3 className="font-semibold mb-4">
-            {isPro ? 'Pro Features' : 'Upgrade to Pro'}
+            {isPro ? 'Pro機能' : 'Proにアップグレード'}
           </h3>
           <ul className="space-y-2">
             {PLANS.pro.features.map((feature) => (
@@ -115,12 +115,12 @@ export default async function DashboardPage({
         </div>
 
         <div className="mt-8 p-6 border rounded-lg">
-          <h3 className="font-semibold mb-4">Quick Start</h3>
+          <h3 className="font-semibold mb-4">クイックスタート</h3>
           <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
-            <li>Configure your Supabase project</li>
-            <li>Set up Stripe for payments</li>
-            <li>Customize the UI to match your brand</li>
-            <li>Deploy to Vercel</li>
+            <li>Supabaseプロジェクトを設定</li>
+            <li>Stripeで決済を設定</li>
+            <li>UIをブランドに合わせてカスタマイズ</li>
+            <li>Vercelにデプロイ</li>
           </ol>
         </div>
       </main>

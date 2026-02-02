@@ -30,7 +30,7 @@ export function UpgradeButton({ priceId }: { priceId: string }) {
       disabled={loading}
       className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 disabled:opacity-50"
     >
-      {loading ? 'Loading...' : 'Upgrade to Pro'}
+      {loading ? '読み込み中...' : 'Proにアップグレード'}
     </button>
   )
 }
@@ -61,7 +61,7 @@ export function ManageBillingButton() {
       disabled={loading}
       className="w-full border px-4 py-2 rounded-md text-sm font-medium hover:bg-accent disabled:opacity-50"
     >
-      {loading ? 'Loading...' : 'Manage Billing'}
+      {loading ? '読み込み中...' : '請求管理'}
     </button>
   )
 }

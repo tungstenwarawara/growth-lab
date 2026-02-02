@@ -37,8 +37,8 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Welcome back</h1>
-          <p className="text-muted-foreground">Sign in to your account</p>
+          <h1 className="text-2xl font-bold">おかえりなさい</h1>
+          <p className="text-muted-foreground">アカウントにログイン</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
@@ -50,7 +50,7 @@ export default function LoginPage() {
 
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-medium">
-              Email
+              メールアドレス
             </label>
             <input
               id="email"
@@ -65,7 +65,7 @@ export default function LoginPage() {
 
           <div className="space-y-2">
             <label htmlFor="password" className="text-sm font-medium">
-              Password
+              パスワード
             </label>
             <input
               id="password"
@@ -83,14 +83,14 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full bg-primary text-primary-foreground py-2 rounded-md font-medium hover:bg-primary/90 disabled:opacity-50"
           >
-            {loading ? 'Signing in...' : 'Sign in'}
+            {loading ? 'ログイン中...' : 'ログイン'}
           </button>
         </form>
 
         <p className="text-center text-sm text-muted-foreground">
-          Don&apos;t have an account?{' '}
+          アカウントをお持ちでない方は{' '}
           <Link href="/signup" className="text-primary hover:underline">
-            Sign up
+            新規登録
           </Link>
         </p>
       </div>

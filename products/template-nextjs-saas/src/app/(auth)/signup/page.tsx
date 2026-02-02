@@ -40,8 +40,8 @@ export default function SignupPage() {
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Create an account</h1>
-          <p className="text-muted-foreground">Get started for free</p>
+          <h1 className="text-2xl font-bold">アカウント作成</h1>
+          <p className="text-muted-foreground">無料で始めましょう</p>
         </div>
 
         <form onSubmit={handleSignup} className="space-y-4">
@@ -53,7 +53,7 @@ export default function SignupPage() {
 
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-medium">
-              Email
+              メールアドレス
             </label>
             <input
               id="email"
@@ -68,7 +68,7 @@ export default function SignupPage() {
 
           <div className="space-y-2">
             <label htmlFor="password" className="text-sm font-medium">
-              Password
+              パスワード
             </label>
             <input
               id="password"
@@ -81,7 +81,7 @@ export default function SignupPage() {
               placeholder="••••••••"
             />
             <p className="text-xs text-muted-foreground">
-              Must be at least 8 characters
+              8文字以上で入力してください
             </p>
           </div>
 
@@ -90,14 +90,14 @@ export default function SignupPage() {
             disabled={loading}
             className="w-full bg-primary text-primary-foreground py-2 rounded-md font-medium hover:bg-primary/90 disabled:opacity-50"
           >
-            {loading ? 'Creating account...' : 'Create account'}
+            {loading ? 'アカウント作成中...' : 'アカウント作成'}
           </button>
         </form>
 
         <p className="text-center text-sm text-muted-foreground">
-          Already have an account?{' '}
+          すでにアカウントをお持ちの方は{' '}
           <Link href="/login" className="text-primary hover:underline">
-            Sign in
+            ログイン
           </Link>
         </p>
       </div>

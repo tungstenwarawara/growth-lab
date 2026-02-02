@@ -11,6 +11,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -18,7 +19,7 @@ export default function SignupPage() {
     setError(null)
 
     const supabase = createClient()
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -32,8 +33,45 @@ export default function SignupPage() {
       return
     }
 
+    // メール確認が必要な場合（sessionがnull）
+    if (data.user && !data.session) {
+      setEmailSent(true)
+      setLoading(false)
+      return
+    }
+
+    // メール確認が不要な場合、ダッシュボードへ
     router.push('/dashboard')
     router.refresh()
+  }
+
+  // メール送信完了画面
+  if (emailSent) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4">
+        <div className="w-full max-w-sm space-y-6 text-center">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+            <span className="text-3xl">✉️</span>
+          </div>
+          <h1 className="text-2xl font-bold">確認メールを送信しました</h1>
+          <p className="text-muted-foreground">
+            <span className="font-medium text-foreground">{email}</span>
+            <br />
+            に確認メールを送信しました。
+            <br />
+            メール内のリンクをクリックして登録を完了してください。
+          </p>
+          <div className="pt-4">
+            <Link
+              href="/login"
+              className="text-primary hover:underline text-sm"
+            >
+              ログインページへ戻る
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (

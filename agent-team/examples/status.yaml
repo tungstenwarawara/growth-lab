@@ -1,0 +1,19 @@
+# Agent Team — ステータスファイルの例
+#
+# ファイル配置: .agent-team/status/{agent-name}.yaml
+# 例: .agent-team/status/frontend.yaml
+#
+# 各エージェントが自分のステータスファイルを更新する
+
+agent: frontend
+status: working       # idle | working | blocked | done
+current_task: "001"
+progress: "ログインフォームのzodバリデーション実装中"
+last_updated: "2026-02-05T11:15:00Z"
+
+# ブロック時の例:
+# agent: frontend
+# status: blocked
+# current_task: "001"
+# blocked_reason: "backend の認証APIがまだ完了していない（タスク003が依存）"
+# last_updated: "2026-02-05T11:00:00Z"

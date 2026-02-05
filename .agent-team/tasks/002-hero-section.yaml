@@ -1,0 +1,20 @@
+id: "002"
+title: "Hero セクションの実装"
+assigned_to: frontend
+status: pending
+priority: high
+created_by: lead
+created_at: "2026-02-05T12:00:00Z"
+
+description: |
+  LP のファーストビュー（Hero セクション）を実装する。
+
+  要件:
+  - キャッチコピー: Agent Team Framework
+  - サブコピー: MCP + tmux で動く、$200/月のAIエージェントチーム
+  - CTA ボタン: GitHub / Get Started
+  - アーキテクチャの ASCII art or ビジュアル
+  - ダークテーマベース
+
+dependencies: ["001"]
+output_path: "portfolio/src/app/page.tsx"

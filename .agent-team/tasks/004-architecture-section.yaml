@@ -1,0 +1,19 @@
+id: "004"
+title: "Architecture セクションの実装"
+assigned_to: frontend
+status: pending
+priority: medium
+created_by: lead
+created_at: "2026-02-05T12:00:00Z"
+
+description: |
+  MCP + tmux ハイブリッドアーキテクチャを視覚的に説明するセクション。
+
+  要件:
+  - tmux の 2x2 レイアウトを視覚的に表現
+  - Lead / Members / Reviewer の関係を表示
+  - ファイルベース通信（YAML）の流れを表示
+  - コードブロックで team.yaml の例を表示
+
+dependencies: ["001"]
+output_path: "portfolio/src/components/"

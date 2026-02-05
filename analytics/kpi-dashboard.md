@@ -7,7 +7,7 @@
 | Metric | Current | Target | Progress |
 |--------|---------|--------|----------|
 | Total Revenue | ¥0 | ¥610,000 | 0% |
-| Monthly Pace | ¥0 | ¥51,000 | - |
+| Monthly Pace | ¥0 | ¥76,250 | - |
 
 ```
 Progress: [░░░░░░░░░░░░░░░░░░░░] 0%
@@ -23,8 +23,9 @@ Progress: [░░░░░░░░░░░░░░░░░░░░] 0%
 |--------|--------|------------|
 | Template Sales | ¥0 | - |
 | Zenn Book | ¥0 | - |
-| SaaS MRR | ¥0 | - |
-| Other | ¥0 | - |
+| Framework Premium | ¥0 | - |
+| Agent Services | ¥0 | - |
+| Content | ¥0 | - |
 | **Total** | **¥0** | - |
 
 ### Monthly Trend
@@ -39,51 +40,52 @@ Progress: [░░░░░░░░░░░░░░░░░░░░] 0%
 
 ## Product Metrics
 
-### Template: Next.js SaaS Starter
+### Agent Team Framework (OSS)
 
 | Metric | Value |
 |--------|-------|
-| Status | Development |
-| Price | ¥5,000 |
+| Status | Phase 0 — Design |
+| GitHub Stars | 0 |
+| Contributors | 0 |
+| Templates Published | 0 |
+
+### Agent Team Templates
+
+| Template | Price | Sales | Revenue |
+|----------|-------|-------|---------|
+| Dev Team | ¥5,000 | 0 | ¥0 |
+| Content Team | ¥3,000 | 0 | ¥0 |
+| Research Team | ¥3,000 | 0 | ¥0 |
+| Launch Team | ¥5,000 | 0 | ¥0 |
+| Bundle | ¥12,000 | 0 | ¥0 |
+| **Total** | | **0** | **¥0** |
+
+### Framework Premium (MRR)
+
+| Metric | Value |
+|--------|-------|
+| Status | Planned (Month 4) |
+| Subscribers | 0 |
+| MRR | ¥0 |
+| Churn Rate | - |
+
+### Zenn Book: Agent Team 実践ガイド
+
+| Metric | Value |
+|--------|-------|
+| Status | Planned (Month 2) |
+| Price | ¥1,500-2,500 |
 | Sales | 0 |
 | Revenue | ¥0 |
 
-### Template: Prompt Pack
+### Agent Development Services
 
 | Metric | Value |
 |--------|-------|
-| Status | Planned |
-| Price | ¥1,500 |
-| Sales | 0 |
-| Revenue | ¥0 |
-
-### SaaS: OGP Generator
-
-| Metric | Value |
-|--------|-------|
-| Status | Planned |
-| Free Users | 0 |
-| Paid Users | 0 |
-| MRR | ¥0 |
-| Conversion Rate | - |
-
-### SaaS: README Generator
-
-| Metric | Value |
-|--------|-------|
-| Status | Planned |
-| Free Users | 0 |
-| Paid Users | 0 |
-| MRR | ¥0 |
-
-### SaaS: Chat Widget
-
-| Metric | Value |
-|--------|-------|
-| Status | Planned |
-| Free Users | 0 |
-| Paid Users | 0 |
-| MRR | ¥0 |
+| Status | Planned (Month 3) |
+| Projects Completed | 0 |
+| Total Revenue | ¥0 |
+| Avg Project Value | - |
 
 ---
 
@@ -91,9 +93,9 @@ Progress: [░░░░░░░░░░░░░░░░░░░░] 0%
 
 ### Twitter/X
 
-| Metric | Current | Target (M3) | Target (M12) |
-|--------|---------|-------------|--------------|
-| Followers | 0 | 1,000 | 3,000 |
+| Metric | Current | Target (M3) | Target (M8) |
+|--------|---------|-------------|-------------|
+| Followers | 0 | 1,000 | 2,000 |
 | Avg Impressions | - | 5,000 | 20,000 |
 | Engagement Rate | - | 3% | 5% |
 
@@ -106,24 +108,33 @@ Progress: [░░░░░░░░░░░░░░░░░░░░] 0%
 | Total Likes | 0 | 200 |
 | Book Sales | 0 | 50 |
 
+### GitHub (Agent Team Framework)
+
+| Metric | Current | Target (M3) | Target (M8) |
+|--------|---------|-------------|-------------|
+| Stars | 0 | 100 | 500 |
+| Forks | 0 | 20 | 100 |
+| Issues/PRs | 0 | 10 | 50 |
+
 ---
 
 ## Milestone Tracker
 
 | # | Milestone | Target | Status |
 |---|-----------|--------|--------|
-| 1 | 初売上 | Month 1 | ⏳ |
-| 2 | Twitter 500 Followers | Month 1 | ⏳ |
-| 3 | 月¥10,000達成 | Month 2 | ⏳ |
-| 4 | Zenn Book リリース | Month 2 | ⏳ |
-| 5 | SaaS MVP 3つリリース | Month 3 | ⏳ |
-| 6 | SaaS初課金 | Month 3 | ⏳ |
-| 7 | Twitter 1,000 Followers | Month 3 | ⏳ |
-| 8 | 月¥50,000達成 | Month 5 | ⏳ |
-| 9 | Twitter 2,000 Followers | Month 6 | ⏳ |
-| 10 | 月¥100,000達成 | Month 8 | ⏳ |
-| 11 | **投資回収完了** | Month 10 | ⏳ |
-| 12 | Twitter 3,000 Followers | Month 12 | ⏳ |
+| 1 | Framework MVP公開 | Week 2 | ⏳ |
+| 2 | 初売上 | Month 1 | ⏳ |
+| 3 | Twitter 500 Followers | Month 1 | ⏳ |
+| 4 | 月¥20,000達成 | Month 2 | ⏳ |
+| 5 | Zenn Book リリース | Month 2 | ⏳ |
+| 6 | GitHub Stars 100 | Month 3 | ⏳ |
+| 7 | サービス初受注 | Month 3 | ⏳ |
+| 8 | Twitter 1,000 Followers | Month 3 | ⏳ |
+| 9 | 月¥70,000達成 | Month 4 | ⏳ |
+| 10 | Premium ローンチ | Month 4 | ⏳ |
+| 11 | 月¥100,000達成 | Month 5 | ⏳ |
+| 12 | Twitter 2,000 Followers | Month 6 | ⏳ |
+| 13 | **投資回収完了** | **Month 8** | ⏳ |
 
 Legend: ⏳ Pending | ✅ Achieved | ❌ Missed
 
@@ -139,14 +150,15 @@ Legend: ⏳ Pending | ✅ Achieved | ❌ Missed
 - Cumulative: ¥
 
 **Products**
-- Shipped:
-- In Progress:
-- Users Added:
+- Framework progress:
+- Templates shipped:
+- Service projects:
 
 **Marketing**
 - Twitter followers: (+)
 - Tweets:
 - Zenn articles:
+- GitHub stars: (+)
 - Top performing content:
 
 **Learnings**
@@ -161,15 +173,16 @@ Legend: ⏳ Pending | ✅ Achieved | ❌ Missed
 ### Warning Signs
 - [ ] No revenue for 2+ weeks
 - [ ] Twitter posting stopped for 3+ days
-- [ ] Churn rate > 10%
-- [ ] No new signups for 1 week
+- [ ] Framework stars growth stalled for 2 weeks
+- [ ] No template sales for 1 month
 
 ### Action Required
-- [ ] Monthly revenue < ¥30,000 by Month 4
-- [ ] No paid users by Month 3
-- [ ] Follower growth stalled for 2 weeks
+- [ ] Monthly revenue < ¥50,000 by Month 4
+- [ ] No service clients by Month 4
+- [ ] GitHub stars < 50 by Month 3
 
 ---
 
-*Updated: 2026-02-01*
-*Next Review: 2026-02-08*
+*Updated: 2026-02-05*
+*Strategy: v2 — Agent Team Framework + Services*
+*Next Review: 2026-02-12*

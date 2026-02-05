@@ -1,22 +1,36 @@
-# Project: Growth Lab — Build in Public
+# Project: Growth Lab — AI Agent Team × Build in Public
 
 ## Mission
 
 MacBook(¥250,000) + Claude Max($200/月) の投資を個人収益で回収する。
-Claude Codeの開発速度を最大限活かし、ストック型収益を積み上げる。
+AI Agent Team Framework の構築＋サービス提供の二刀流で、ストック型収益を積み上げる。
 
-**投資回収目標：¥610,000（Month 10までに達成）**
+**投資回収目標：¥610,000（Month 8までに達成）**
 
 ---
 
 ## Principles
 
-1. **スピード最優先** — MVPは3日以内に完成させる
-2. **ストック型を優先** — フロー収入よりMRR（月額課金）を重視
-3. **市場検証ファースト** — 作る前にニーズを確認、2週間で判断
-4. **自動化できるものは全て自動化** — 人間の仕事はPM/マーケターに徹する
+1. **フレームワーク開発 = コンテンツ** — 作る過程そのものが発信ネタになる
+2. **$200/月を証明しろ** — Claude Max内で最大の価値を生み出す
+3. **チームに任せろ** — 人間はDirector、実装はAgent Team
+4. **Dog Foodingを怠るな** — 全ての開発にAgent Teamを使う
 5. **Build in Public** — 過程・数字を全て公開する前提で行動
-6. **毎週の振り返りと数値計測を怠らない**
+6. **フライホイールを回せ** — 開発→発信→集客→収益→実績→発信
+
+---
+
+## Core Product: Agent Team Framework
+
+MCP + tmux ハイブリッドアーキテクチャによるマルチエージェントフレームワーク。
+「チーム」メタファー（Director → Lead → Members → Reviewer）を採用。
+
+### Revenue Streams
+1. Agent Team テンプレート販売（Gumroad/BOOTH）
+2. Framework Premium（月額サブスク）
+3. Zenn Book「Agent Team 実践ガイド」
+4. コンテンツ収益（Zenn/Twitter/note）
+5. エージェント開発サービス（MVP構築代行）
 
 ---
 
@@ -24,6 +38,9 @@ Claude Codeの開発速度を最大限活かし、ストック型収益を積み
 
 | Layer | Technology |
 |-------|------------|
+| Agent Process | tmux (parallel execution) |
+| Tool Integration | MCP (Model Context Protocol) |
+| Agent Communication | YAML files (filesystem-based) |
 | Frontend | Next.js 15 (App Router) + Tailwind CSS v4 + shadcn/ui |
 | Backend | Supabase (Auth, Database, Edge Functions) |
 | Hosting | Vercel |
@@ -66,20 +83,26 @@ Follow Conventional Commits:
 
 ```
 growth-lab/
-├── CLAUDE.md                    # This file
-├── README.md                    # Project dashboard
+├── CLAUDE.md                       # This file
+├── README.md                       # Project dashboard
 ├── .claude/
-│   ├── prompts/                 # Reusable prompts
-│   └── commands/                # Custom commands
+│   ├── prompts/                    # Reusable prompts
+│   └── commands/                   # Custom commands
 │
-├── products/                    # All products
-│   ├── saas-ogp-generator/
-│   ├── saas-readme-gen/
-│   ├── saas-chatbot-widget/
-│   ├── template-nextjs-saas/    # For sale
-│   └── template-prompt-pack/    # For sale
+├── agent-team/                     # Agent Team Framework (Core)
+│   ├── README.md                   # Framework docs
+│   ├── templates/                  # Team templates
+│   │   ├── dev-team/
+│   │   ├── content-team/
+│   │   ├── research-team/
+│   │   └── launch-team/
+│   ├── roles/                      # Role-specific instructions
+│   ├── scripts/                    # tmux setup scripts
+│   └── examples/                   # Usage examples
 │
-├── marketing/                   # Marketing assets
+├── products/                       # Products built with Agent Team
+│
+├── marketing/                      # Marketing assets
 │   ├── content-calendar.md
 │   ├── sns-posts/
 │   ├── zenn-articles/
@@ -87,21 +110,21 @@ growth-lab/
 │   ├── note-articles/
 │   └── landing-pages/
 │
-├── analytics/                   # KPI & Reports
+├── analytics/                      # KPI & Reports
 │   ├── monthly-report.md
 │   ├── revenue-tracking.md
 │   ├── kpi-dashboard.md
 │   └── user-feedback/
 │
-├── automation/                  # Automation scripts
+├── automation/                     # Automation scripts
 │   ├── sns-scheduler/
 │   ├── analytics-reporter/
 │   └── deploy-scripts/
 │
-├── portfolio/                   # Portfolio site (Next.js)
+├── portfolio/                      # Portfolio site (Next.js)
 │
-└── docs/                        # Documentation
-    ├── strategy.md              # Master strategy
+└── docs/                           # Documentation
+    ├── strategy.md                 # Master strategy
     ├── brand-guide.md
     └── playbooks/
 ```
@@ -111,12 +134,13 @@ growth-lab/
 ## Development Workflow
 
 ```
-1. Claude Code でMVP構築（2-3日）
-2. Vercel にプレビューデプロイ
-3. Twitter/X で告知・フィードバック収集
-4. Claude Code でイテレーション
-5. main ブランチにマージ → 本番デプロイ
-6. Zenn に技術記事（開発過程の共有）
+1. Director（人間）がタスクを定義
+2. Agent Team Lead がタスクを分解・アサイン
+3. Members が並列で実装（tmux panes）
+4. Reviewer がレビュー・フィードバック
+5. Director が最終確認
+6. Vercel にデプロイ
+7. Build in Public で過程を発信
 ```
 
 ---
@@ -146,13 +170,14 @@ npm run type-check   # TypeScript check
 
 ### Twitter/X
 - Keep under 140 characters for optimal engagement
-- Include hashtags: #個人開発 #ClaudeCode #BuildInPublic
+- Include hashtags: #AIエージェント #ClaudeCode #BuildInPublic #個人開発
 - Post daily development logs
 
 ### Zenn
 - SEO-optimized titles and headings
 - Tutorial format preferred
 - Include code examples
+- Focus: AI agent orchestration, MCP, tmux, cost optimization
 
 ---
 
@@ -160,21 +185,20 @@ npm run type-check   # TypeScript check
 
 Before building any new product, verify:
 
-1. [ ] MVP可能 in 3 days with Claude Code
-2. [ ] Freemium or subscription model fits naturally
-3. [ ] Target: Japanese developers or tech users
-4. [ ] Price range: ¥500-3,000/month
+1. [ ] Agent Team Framework を活用して構築可能
+2. [ ] フレームワークの実績証明になる
+3. [ ] Build in Public コンテンツのネタになる
+4. [ ] $200/月の Claude Max 内で運用可能
 5. [ ] Dog fooding possible (I would use it myself)
 
 ---
 
-## MVP Validation Criteria
+## Agent Team Cost Budget
 
-After 2 weeks of launch:
-
-- ✅ 5+ paid users → Continue development
-- ⚠️ 50+ signups but 0 paid → Consider pivot
-- ❌ <10 signups → Abandon, move to next candidate
+- Monthly budget: $200 (Claude Max)
+- Max concurrent agents: 2-3
+- Communication: File-based YAML (zero token cost)
+- Optimization: Event-driven, no polling, compact role instructions
 
 ---
 
@@ -182,20 +206,21 @@ After 2 weeks of launch:
 
 ### Weekly
 - Cumulative revenue vs ¥610,000 target
-- MRR (Monthly Recurring Revenue)
+- Template sales & Zenn Book sales
+- Framework GitHub Stars
 - Twitter/X followers & engagement
 - Zenn article PV & likes
 
 ### Per Product
-- Free users / Paid users
-- Conversion rate
-- Churn rate
+- Template units sold
+- Premium subscribers
+- Service projects completed
 
 ---
 
 ## Reference Documents
 
-- `/docs/strategy.md` — Master strategy document
+- `/docs/strategy.md` — Master strategy document (v2: Agent Team pivot)
 - `/docs/brand-guide.md` — Brand guidelines
 - `/docs/playbooks/` — Operational playbooks
 - `/marketing/content-calendar.md` — Content schedule
@@ -204,3 +229,4 @@ After 2 weeks of launch:
 ---
 
 *Last updated: 2026-02*
+*Strategy: v2 — AI Agent Team Framework + Services*

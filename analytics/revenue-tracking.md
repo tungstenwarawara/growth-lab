@@ -33,37 +33,46 @@
 
 ## Revenue by Source
 
-### Template Sales
+### Agent Team Templates
 
 | Product | Price | Units | Total | Platform |
 |---------|-------|-------|-------|----------|
-| Next.js SaaS Starter | ¥5,000 | 0 | ¥0 | Gumroad |
-| Prompt Pack | ¥1,500 | 0 | ¥0 | Gumroad |
+| Dev Team Template | ¥5,000 | 0 | ¥0 | Gumroad |
+| Content Team Template | ¥3,000 | 0 | ¥0 | Gumroad |
+| Research Team Template | ¥3,000 | 0 | ¥0 | Gumroad |
+| Launch Team Template | ¥5,000 | 0 | ¥0 | Gumroad |
+| Template Bundle | ¥12,000 | 0 | ¥0 | Gumroad |
 | **Subtotal** | | | **¥0** | |
+
+### Framework Premium (MRR)
+
+| Metric | Value |
+|--------|-------|
+| Subscribers | 0 |
+| MRR | ¥0 |
+| Churn | 0% |
 
 ### Zenn Book
 
 | Product | Price | Units | Total |
 |---------|-------|-------|-------|
-| Claude Code実践ガイド | ¥1,500 | 0 | ¥0 |
+| Agent Team 実践ガイド | ¥1,500-2,500 | 0 | ¥0 |
 | **Subtotal** | | | **¥0** |
 
-### SaaS MRR
+### Agent Development Services
 
-| Product | Free | Paid | MRR | Churn |
-|---------|------|------|-----|-------|
-| OGP Generator | 0 | 0 | ¥0 | 0% |
-| README Generator | 0 | 0 | ¥0 | 0% |
-| Chat Widget | 0 | 0 | ¥0 | 0% |
-| **Total MRR** | | | **¥0** | |
+| Project | Client | Amount | Status | Notes |
+|---------|--------|--------|--------|-------|
+| - | - | - | - | No projects yet |
+| **Subtotal** | | **¥0** | | |
 
-### Other Revenue
+### Content Revenue
 
 | Source | Amount | Notes |
 |--------|--------|-------|
+| Zenn (PV) | ¥0 | - |
 | Affiliate | ¥0 | - |
 | Sponsored | ¥0 | - |
-| Consulting | ¥0 | - |
 | **Subtotal** | **¥0** | |
 
 ---
@@ -73,17 +82,13 @@
 | Month | Monthly | Cumulative | Target | Pace |
 |-------|---------|------------|--------|------|
 | Feb 2026 | ¥0 | ¥0 | ¥5,000 | ❌ |
-| Mar 2026 | - | - | ¥30,000 | - |
-| Apr 2026 | - | - | ¥70,000 | - |
-| May 2026 | - | - | ¥120,000 | - |
-| Jun 2026 | - | - | ¥180,000 | - |
-| Jul 2026 | - | - | ¥255,000 | - |
-| Aug 2026 | - | - | ¥340,000 | - |
-| Sep 2026 | - | - | ¥440,000 | - |
-| Oct 2026 | - | - | ¥550,000 | - |
-| Nov 2026 | - | - | **¥610,000** | 🎯 |
-| Dec 2026 | - | - | ¥795,000 | - |
-| Jan 2027 | - | - | ¥925,000 | - |
+| Mar 2026 | - | - | ¥50,000 | - |
+| Apr 2026 | - | - | ¥120,000 | - |
+| May 2026 | - | - | ¥215,000 | - |
+| Jun 2026 | - | - | ¥315,000 | - |
+| Jul 2026 | - | - | ¥415,000 | - |
+| Aug 2026 | - | - | ¥535,000 | - |
+| Sep 2026 | - | - | **¥660,000** | 🎯 |
 
 ---
 
@@ -133,17 +138,22 @@
 ## Weekly Revenue Log
 
 ### Week 1 (Feb 1-7)
-- Template: ¥0
-- SaaS: ¥0
-- Other: ¥0
+- Templates: ¥0
+- Zenn Book: ¥0
+- Premium: ¥0
+- Services: ¥0
+- Content: ¥0
 - **Total: ¥0**
 
 ### Week 2 (Feb 8-14)
-- Template: ¥0
-- SaaS: ¥0
-- Other: ¥0
+- Templates: ¥0
+- Zenn Book: ¥0
+- Premium: ¥0
+- Services: ¥0
+- Content: ¥0
 - **Total: ¥0**
 
 ---
 
-*Updated: 2026-02-01*
+*Updated: 2026-02-05*
+*Strategy: v2 — Agent Team Framework + Services*

@@ -1,0 +1,67 @@
+# Dev Team — Agent Team Template
+#
+# フルスタック開発チーム構成
+# MCP + tmux ハイブリッドアーキテクチャ
+#
+# Usage:
+#   ./agent-team/scripts/setup-team.sh ./agent-team/templates/dev-team
+
+team:
+  name: dev-team
+  description: "フルスタック開発チーム — フロントエンド・バックエンドの並列実装"
+  max_concurrent: 3  # Claude Max $200/月の制約内
+
+  # tmux session 設定
+  session:
+    name: agent-team
+    layout: tiled  # tiled | even-horizontal | even-vertical
+
+  # 共有ワークスペース（自動作成）
+  workspace:
+    tasks: .agent-team/tasks
+    messages: .agent-team/messages
+    status: .agent-team/status
+    output: .agent-team/output
+
+  # チーム構成
+  lead:
+    name: lead
+    role: architect
+    instructions: roles/lead.md
+    description: "タスク分解・進捗管理・品質担保"
+    mcp_servers:
+      - filesystem
+      - git
+      - memory
+
+  members:
+    - name: frontend
+      role: frontend-developer
+      instructions: roles/frontend.md
+      description: "UI/UX実装、コンポーネント開発"
+      mcp_servers:
+        - filesystem
+        - web-fetch
+
+    - name: backend
+      role: backend-developer
+      instructions: roles/backend.md
+      description: "API・DB・ビジネスロジック実装"
+      mcp_servers:
+        - filesystem
+        - database
+
+  reviewer:
+    name: reviewer
+    role: code-reviewer
+    instructions: roles/reviewer.md
+    description: "コードレビュー・品質チェック"
+    mcp_servers:
+      - filesystem
+      - git
+
+# コスト設計メモ:
+# - Lead + 2 Members + Reviewer = 4エージェント
+# - ただし同時稼働は max_concurrent: 3 に制限
+# - Reviewer は Members の実装完了後に起動（イベント駆動）
+# - ファイルベース通信でオーケストレーションのトークン消費ゼロ

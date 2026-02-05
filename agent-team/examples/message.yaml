@@ -1,0 +1,29 @@
+# Agent Team — メッセージの例
+#
+# ファイル配置: .agent-team/messages/{timestamp}-{from}-to-{to}.yaml
+# 例: .agent-team/messages/20260205-1030-lead-to-frontend.yaml
+
+from: lead
+to: frontend
+type: task_assignment  # task_assignment | feedback | question | info | blocked
+timestamp: "2026-02-05T10:30:00Z"
+
+content: |
+  ログインフォームの実装をお願いします。
+
+  タスク: .agent-team/tasks/001-implement-login.yaml
+
+  注意点:
+  - backend の認証API（タスク003）が完了しています
+  - Supabase Client は src/lib/supabase/client.ts にあります
+  - shadcn/ui の Input, Button, Form を使ってください
+
+# --- レスポンスの例 ---
+# from: frontend
+# to: lead
+# type: info
+# timestamp: "2026-02-05T10:35:00Z"
+# content: |
+#   了解しました。タスク001を開始します。
+#   shadcn/ui の Form コンポーネントがまだインストールされていないので、
+#   先に追加します。

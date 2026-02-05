@@ -1,0 +1,34 @@
+# Agent Team — タスク定義の例
+#
+# ファイル配置: .agent-team/tasks/001-implement-login.yaml
+# 命名規則: {ID}-{短い説明}.yaml
+
+id: "001"
+title: "ログインフォームの実装"
+assigned_to: frontend  # lead | frontend | backend | reviewer
+status: pending        # pending | in_progress | review | done | blocked
+priority: high         # high | medium | low
+created_by: lead
+created_at: "2026-02-05T10:00:00Z"
+
+description: |
+  ログインページにメールアドレス＋パスワードのフォームを実装する。
+
+  要件:
+  - メールアドレスとパスワードの入力フィールド
+  - zodによるバリデーション
+  - エラーメッセージの表示
+  - ローディング状態の表示
+  - Supabase Auth の signInWithPassword を呼び出す
+
+  ファイル:
+  - src/app/(auth)/login/page.tsx
+  - src/components/auth/login-form.tsx
+
+dependencies: ["003"]  # backend の認証API完了が前提
+output_path: "src/app/(auth)/login/"
+
+# --- 以下はステータス更新時に追記 ---
+# started_at: "2026-02-05T10:30:00Z"
+# completed_at: "2026-02-05T11:30:00Z"
+# review_notes: "バリデーション追加済み。LGTM。"

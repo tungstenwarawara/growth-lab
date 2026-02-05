@@ -1,0 +1,23 @@
+id: "005"
+title: "CTA + Footer セクションの実装"
+assigned_to: frontend
+status: pending
+priority: medium
+created_by: lead
+created_at: "2026-02-05T12:00:00Z"
+
+description: |
+  ページ下部の CTA と Footer。
+
+  CTA:
+  - "今すぐ始める" ボタン → GitHub リポジトリ
+  - "テンプレートを見る" ボタン → Gumroad（準備中）
+
+  Footer:
+  - Build in Public プロジェクトであることの説明
+  - Twitter/X リンク
+  - Zenn リンク
+  - GitHub リンク
+
+dependencies: ["001"]
+output_path: "portfolio/src/components/"

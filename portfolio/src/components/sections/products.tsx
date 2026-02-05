@@ -7,29 +7,45 @@ import {
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
-const products = [
+interface Product {
+  title: string
+  description: string
+  price: string
+  status: 'available' | 'coming-soon' | 'planned'
+  link: string | null
+}
+
+const products: Product[] = [
   {
-    title: 'Next.js SaaS Starter Kit',
+    title: 'Dev Team テンプレート',
     description:
-      'Supabase認証、Stripe決済、ダッシュボードを含むSaaSテンプレート。すぐに開発を始められます。',
+      'フルスタック開発チーム。Lead + Frontend + Backend + Reviewer の4ロール構成。team.yaml、ロール定義、セットアップスクリプト一式。',
     price: '¥5,000',
     status: 'coming-soon',
     link: null,
   },
   {
-    title: 'Claude Code Prompt Pack',
+    title: 'Content Team テンプレート',
     description:
-      '個人開発を加速する実践的なプロンプト集。新規プロダクト開発から記事執筆まで。',
-    price: '¥1,500',
-    status: 'coming-soon',
+      '技術コンテンツ制作チーム。Editor + Writer + SEO Analyst + Fact Checker。Zenn記事やブログの効率的な制作に。',
+    price: '¥3,000',
+    status: 'planned',
     link: null,
   },
   {
-    title: 'OGP Generator',
+    title: 'テンプレートバンドル',
     description:
-      'ブログやWebサイト用のOGP画像を簡単に生成。テンプレートから選んでカスタマイズ。',
-    price: 'Freemium',
+      'Dev Team + Content Team + Research Team + Launch Team の全テンプレートをセットで。個別購入より40%お得。',
+    price: '¥12,000',
     status: 'planned',
+    link: null,
+  },
+  {
+    title: 'Zenn Book',
+    description:
+      '「Claude Code Agent Team 実践ガイド」— MCP + tmux ハイブリッドでエージェントチームを構築する完全ガイド。$200/月で始める方法。',
+    price: '¥1,500',
+    status: 'coming-soon',
     link: null,
   },
 ]
@@ -40,10 +56,10 @@ export function Products() {
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold mb-4">Products</h2>
         <p className="text-muted-foreground">
-          Claude Codeで開発したプロダクト
+          Agent Team Framework を活用するためのテンプレートとガイド
         </p>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
         {products.map((product) => (
           <Card key={product.title} className="flex flex-col">
             <CardHeader>
@@ -63,12 +79,14 @@ export function Products() {
               )}
               {product.status === 'planned' && (
                 <Button className="w-full" variant="outline" disabled>
-                  開発予定
+                  準備中
                 </Button>
               )}
               {product.status === 'available' && product.link && (
                 <Button className="w-full" asChild>
-                  <a href={product.link}>購入する</a>
+                  <a href={product.link} target="_blank" rel="noopener noreferrer">
+                    購入する
+                  </a>
                 </Button>
               )}
             </CardContent>

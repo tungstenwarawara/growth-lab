@@ -1,0 +1,20 @@
+id: "001"
+title: "Next.js プロジェクトのセットアップ"
+assigned_to: backend
+status: pending
+priority: high
+created_by: lead
+created_at: "2026-02-05T12:00:00Z"
+
+description: |
+  portfolio/ ディレクトリに Next.js 15 プロジェクトを作成する。
+
+  要件:
+  - Next.js 15 (App Router)
+  - TypeScript strict mode
+  - Tailwind CSS v4
+  - shadcn/ui 初期設定
+  - 基本的な layout.tsx と page.tsx
+
+dependencies: []
+output_path: "portfolio/"

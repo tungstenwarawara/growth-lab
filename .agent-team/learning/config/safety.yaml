@@ -1,0 +1,73 @@
+# Safety Configuration for Self-Improvement Loop
+# このファイルは変更可能なパスと禁止パスを定義します
+
+version: "1.0"
+last_updated: "2026-02-06"
+
+# 変更を許可するパス（ホワイトリスト）
+allowed_paths:
+  # スキル・プロンプト関連
+  - ".claude/commands/**"           # カスタムスラッシュコマンド
+  - ".claude/prompts/**"            # プロンプトテンプレート
+
+  # Agent Team Framework 関連
+  - "agent-team/templates/**"       # チームテンプレート
+  - ".agent-team/learning/**"       # 学習データ（常にOK）
+
+  # ドキュメント関連（低リスク）
+  - "docs/playbooks/**"             # プレイブック
+
+# 絶対に変更禁止（ブラックリスト）
+forbidden_paths:
+  # コアルール
+  - "CLAUDE.md"                     # プロジェクトルール
+  - ".claude/settings.json"         # Claude Code 設定
+
+  # セキュリティ関連
+  - "*.env*"                        # 環境変数
+  - "**/secrets/**"                 # シークレット
+  - "**/*.pem"                      # 証明書
+  - "**/*.key"                      # 秘密鍵
+
+  # 依存関係
+  - "package.json"                  # 依存関係は手動管理
+  - "package-lock.json"             # ロックファイル
+  - "node_modules/**"               # 外部パッケージ
+
+  # バージョン管理
+  - ".git/**"                       # Git 内部
+  - ".gitignore"                    # Git 設定
+
+# 条件付き許可（Director承認必須）
+requires_director_approval:
+  - ".claude/agents/**"             # エージェント定義の変更
+  - "agent-team/scripts/**"         # スクリプトの変更
+  - "**/mcp*.json"                  # MCP 設定
+  - "docs/strategy.md"              # 戦略ドキュメント
+
+# 危険なパターン（絶対禁止）
+forbidden_patterns:
+  - "rm -rf"
+  - "sudo"
+  - "chmod 777"
+  - "curl.*| sh"
+  - "eval("
+  - "exec("
+  - "process.exit"
+  - "__proto__"
+  - "constructor.prototype"
+
+# ファイルサイズ制限
+size_limits:
+  max_file_size_bytes: 102400       # 100KB
+  max_lines_per_change: 500         # 1回の変更で最大500行
+  max_files_per_proposal: 5         # 1提案で最大5ファイル
+
+# 検証ルール
+validation:
+  # YAML ファイルは構文チェック必須
+  yaml_syntax_check: true
+  # Markdown ファイルはリンク切れチェック
+  markdown_link_check: false        # 後で有効化
+  # TypeScript ファイルは型チェック
+  typescript_check: false           # 後で有効化

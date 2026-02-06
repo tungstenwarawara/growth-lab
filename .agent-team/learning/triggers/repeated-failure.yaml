@@ -1,0 +1,89 @@
+# Trigger: Repeated Failure Detection
+# 同じタイプのエラーが繰り返されることを検知するトリガー
+
+trigger:
+  id: "repeated-failure"
+  name: "繰り返し失敗検知"
+  description: "同じタイプのエラーが複数回発生したことを検知"
+  priority: high
+  enabled: true
+
+# 検知条件
+detection:
+  # 同じエラータイプの発生回数
+  min_occurrences: 3
+
+  # 検知ウィンドウ
+  time_window: "24h"
+
+  # エラーの類似度判定
+  similarity:
+    method: "error_type"  # error_type | error_message | stack_trace
+    threshold: 0.8
+
+  # エラー分類
+  error_categories:
+    - category: "type_error"
+      patterns: ["TypeError", "type mismatch", "型エラー"]
+    - category: "syntax_error"
+      patterns: ["SyntaxError", "構文エラー", "Unexpected token"]
+    - category: "import_error"
+      patterns: ["ImportError", "Module not found", "Cannot find module"]
+    - category: "runtime_error"
+      patterns: ["RuntimeError", "実行時エラー"]
+    - category: "api_error"
+      patterns: ["API Error", "Request failed", "fetch failed"]
+
+# トリガー発火時のアクション
+actions:
+  - action: "log_event"
+    params:
+      event_type: "repeated_failure"
+      include_error_history: true
+
+  - action: "analyze_root_cause"
+    params:
+      depth: 3  # 直近3回のエラーを分析
+
+  - action: "search_patterns"
+    params:
+      search_for: "similar_failures"
+
+  - action: "create_proposal"
+    params:
+      proposal_type: "fix_recurring_issue"
+      auto_approve: false
+      escalate_to: "director"
+
+# 通知設定
+notification:
+  # Director に通知
+  notify_director: true
+  message_template: |
+    ## 繰り返し失敗を検知
+
+    **エラータイプ**: {{ error_category }}
+    **発生回数**: {{ occurrence_count }}
+    **期間**: {{ time_window }}
+
+    ### 最新のエラー
+    {{ latest_error }}
+
+    ### 提案されたアクション
+    {{ proposed_action }}
+
+# エスカレーション
+escalation:
+  # 5回以上なら即座にエスカレーション
+  immediate_escalation_threshold: 5
+
+  # エスカレーション先
+  escalate_to: "director"
+
+# 学習データ記録
+learning:
+  # 解決策が見つかったら記録
+  record_solution: true
+  # パターンとして登録
+  create_pattern: true
+  pattern_category: "error_prevention"

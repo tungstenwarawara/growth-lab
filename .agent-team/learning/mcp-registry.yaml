@@ -1,0 +1,134 @@
+# MCP Server Registry
+# 利用可能なMCPサーバーとその状態を管理
+
+version: "1.0"
+last_updated: "2026-02-06"
+
+# インストール済みサーバー（dev-team で使用中）
+installed_servers:
+  - name: "filesystem"
+    category: core
+    description: "ファイルシステム操作（読み取り、書き込み、検索）"
+    used_by: [lead, frontend, backend, reviewer]
+    status: active
+
+  - name: "git"
+    category: core
+    description: "Git操作（コミット、ブランチ、差分）"
+    used_by: [lead, reviewer]
+    status: active
+
+  - name: "memory"
+    category: core
+    description: "永続メモリ（セッション間でのデータ保持）"
+    used_by: [lead]
+    status: active
+
+  - name: "web-fetch"
+    category: network
+    description: "Web取得（URL からコンテンツ取得）"
+    used_by: [frontend]
+    status: active
+
+  - name: "database"
+    category: data
+    description: "データベース操作（Supabase）"
+    used_by: [backend]
+    status: active
+
+# 発見済み・未インストール
+discovered_servers:
+  # 画像処理関連
+  - name: "@anthropic/image-tools"
+    category: media
+    description: "画像処理ツール（リサイズ、圧縮、変換）"
+    discovered_at: "2026-02-06"
+    discovered_by: null
+    use_case: null
+    install_priority: low
+    estimated_value: medium
+
+  # ブラウザ自動化
+  - name: "@anthropic/puppeteer"
+    category: automation
+    description: "ブラウザ自動化（E2Eテスト、スクレイピング）"
+    discovered_at: null
+    discovered_by: null
+    use_case: null
+    install_priority: low
+    estimated_value: medium
+
+  # Slack 連携
+  - name: "@anthropic/slack"
+    category: communication
+    description: "Slack 連携（通知、メッセージ送信）"
+    discovered_at: null
+    discovered_by: null
+    use_case: "Director への通知"
+    install_priority: medium
+    estimated_value: high
+
+# 外部レジストリソース（Phase 2 以降で使用）
+discovery_sources:
+  - name: "Anthropic Official"
+    url: "https://github.com/anthropics/mcp-servers"
+    type: github
+    enabled: false  # Phase 1 では無効
+
+  - name: "MCP.run Registry"
+    url: "https://mcp.run/registry"
+    type: api
+    enabled: false
+
+  - name: "Awesome MCP"
+    url: "https://github.com/punkpeye/awesome-mcp-servers"
+    type: github
+    enabled: false
+
+# カテゴリ定義
+categories:
+  core:
+    description: "基本機能（ファイル、Git、メモリ）"
+    priority: highest
+
+  network:
+    description: "ネットワーク関連（HTTP、WebSocket）"
+    priority: high
+
+  data:
+    description: "データ関連（DB、キャッシュ）"
+    priority: high
+
+  media:
+    description: "メディア処理（画像、動画、音声）"
+    priority: medium
+
+  automation:
+    description: "自動化（ブラウザ、タスク）"
+    priority: medium
+
+  communication:
+    description: "コミュニケーション（Slack、Discord）"
+    priority: low
+
+  ai:
+    description: "AI関連（埋め込み、検索）"
+    priority: low
+
+# インストール提案のルール
+installation_rules:
+  # 自動提案の条件
+  auto_suggest:
+    # 同じ use_case が3回以上検出されたら提案
+    min_detections: 3
+    # 優先度が high 以上
+    min_priority: medium
+
+  # 提案時の承認レベル
+  approval_level: director  # MCP インストールは Director 承認必須
+
+  # インストール前の検証
+  pre_install_checks:
+    - check_compatibility: true
+    - check_security: true
+    - estimate_cost_impact: true

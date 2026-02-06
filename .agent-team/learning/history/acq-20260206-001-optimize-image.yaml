@@ -1,0 +1,73 @@
+# Skill Acquisition History — スキル獲得履歴
+# ID: acq-20260206-001
+
+acquisition:
+  id: "acq-20260206-001"
+  skill_name: "optimize-image"
+  skill_command: "/optimize-image"
+
+  # 提案からの情報
+  proposal_id: "prop-20260206-001"
+  proposal_type: skill_acquisition
+  detection_trigger: efficiency_opportunity
+
+  # 検知の経緯
+  detection:
+    trigger_type: efficiency_opportunity
+    description: |
+      Frontend エージェントが画像最適化処理を3回以上手動で記述。
+      sharp ライブラリを使用したWebP変換が共通パターン。
+
+    occurrences:
+      - task_id: "task-015"
+        date: "2026-02-04"
+      - task_id: "task-018"
+        date: "2026-02-05"
+      - task_id: "task-021"
+        date: "2026-02-06"
+
+  # 承認情報
+  approval:
+    required_level: lead
+    approved_by: lead
+    approved_at: "2026-02-06T14:25:00Z"
+    notes: "画像最適化の繰り返しパターンを確認。スキル化により効率化が期待できる。"
+
+  # 生成されたファイル
+  files_created:
+    - path: ".claude/commands/optimize-image.md"
+      lines: 72
+      type: skill_file
+
+  # Git 情報（コミット後に更新）
+  git:
+    commit_hash: null  # コミット後に更新
+    branch: "claude/review-project-plan-6xeRB"
+
+  # ロールバック手順
+  rollback:
+    method: git_revert
+    command: "git revert {commit_hash}"
+    files_to_remove:
+      - ".claude/commands/optimize-image.md"
+    notes: |
+      ロールバックする場合は上記コマンドを実行。
+      または手動で .claude/commands/optimize-image.md を削除。
+
+  # 効果測定
+  impact:
+    estimated:
+      time_saved_per_use_minutes: 5
+      weekly_uses: 5
+      monthly_time_saved_hours: 1.67
+
+    actual:
+      uses_count: 0  # 使用後に更新
+      feedback: null
+
+  # ステータス
+  status: completed
+  completed_at: "2026-02-06T14:30:00Z"
+
+  # 通知
+  notification_id: "notif-20260206-143000"

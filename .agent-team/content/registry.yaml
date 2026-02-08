@@ -9,7 +9,7 @@
 #   - 更新時は last_updated と updated_by を必ず書き換える
 # =============================================================================
 
-last_updated: "2026-02-09T02:30:00+09:00"
+last_updated: "2026-02-09T03:30:00+09:00"
 updated_by: great-sage
 
 platforms:
@@ -31,7 +31,22 @@ platforms:
           comments: 0
           bookmarks: 0
         sns_shared: false
-        notes: "2/8公開。初のZenn記事。9h経過、いいね0。"
+        notes: "2/8公開。初のZenn記事。"
+
+      - id: "156ee6de461068"
+        title: "Chrome MCP + Claude CodeでSNS全チャネル自動巡回を実装した話"
+        url: "https://zenn.dev/mikkabouzu_log/articles/156ee6de461068"
+        published_at: "2026-02-08"
+        status: published
+        category: tech
+        tags: [個人開発, 自動化, Model Context Protocol, Claude Code]
+        metrics:
+          pv: 0
+          likes: 0
+          comments: 0
+          bookmarks: 0
+        sns_shared: false
+        notes: "2/8公開。Phase1成果報告の技術記事。"
 
       - id: "00-project-journey"
         title: "【実践記録】MCP + tmux でAIエージェントチームを作った話"
@@ -50,11 +65,11 @@ platforms:
         notes: "初稿完成済み。公開前レビュー待ち。"
 
     stats:
-      total_articles: 2
-      total_published_articles: 1
+      total_articles: 3
+      total_published_articles: 2
       total_likes: 0
       total_pv: 0
-      last_synced: "2026-02-09T02:30:00+09:00"
+      last_synced: "2026-02-09T03:30:00+09:00"
 
   note:
     base_url: "https://note.com"
@@ -69,7 +84,19 @@ platforms:
         category: opinion
         tags: [AI, 転スラ, 大賢者, 個人開発]
         metrics: { pv: 0, likes: 0, comments: 0 }
-        notes: "2/8公開。8h経過、スキ0。"
+        notes: "2/8公開。"
+
+      - id: "nbd2f82fad87d"
+        title: "【実験007】AIに「目」を与えたら、SNSの改善点を全部見抜かれた話"
+        url: "https://note.com/mikkabouzu_ai/n/nbd2f82fad87d"
+        published_at: "2026-02-08"
+        status: published
+        category: opinion
+        tags: [AIとやってみた, 個人開発, 転スラ]
+        metrics: { pv: 0, likes: 0, comments: 0 }
+        sns_shared: false
+        local_path: "/marketing/note-articles/phase1-great-sage-eyes-open.md"
+        notes: "2/8公開。Phase1成果報告。大賢者SNS巡回結果。"
 
       - id: "experiment-006"
         title: "【実験006】NotionのDBを「ゲームのステータス画面」にする（Project Oracle）"
@@ -128,13 +155,13 @@ platforms:
         metrics: { pv: 0, likes: 4, comments: 0 }
 
     stats:
-      total_articles: 8
-      total_published_articles: 8
+      total_articles: 9
+      total_published_articles: 9
       total_likes: 11
       total_pv: 0
       followers: 2
       following: 2
-      last_synced: "2026-02-09T02:30:00+09:00"
+      last_synced: "2026-02-09T03:30:00+09:00"
 
   twitter:
     base_url: "https://x.com"
@@ -144,7 +171,7 @@ platforms:
       followers: 0
       following: 3
       total_posts: 12
-      last_synced: "2026-02-09T02:30:00+09:00"
+      last_synced: "2026-02-09T03:30:00+09:00"
     notes: "投稿12件、フォロワー0。フォロー3。最新2件: SNS巡回スキル報告+Phase1完了報告。"
 
   booth:
@@ -165,7 +192,7 @@ platforms:
       total_sales: 0
       total_revenue: 0
       manage_url: "https://manage.booth.pm"
-      last_synced: "2026-02-09T02:30:00+09:00"
+      last_synced: "2026-02-09T03:30:00+09:00"
 
 # -----------------------------------------------------------------------------
 # 関連パス

@@ -1,0 +1,97 @@
+# 大賢者（Great Sage）ステータス
+# オーケストレーター兼自己改善エンジン
+
+agent: great-sage
+role: orchestrator
+status: active
+session_started: "2026-02-08T00:00:00Z"
+current_focus: "plan-restructuring"
+
+# 管理下のエージェント
+managed_agents:
+  - name: frontend-member
+    specialty: "Next.js, Tailwind, shadcn/ui"
+    status: idle
+  - name: backend-member
+    specialty: "Supabase, API, Stripe"
+    status: idle
+  - name: reviewer
+    specialty: "コードレビュー, 品質保証"
+    status: idle
+  - name: uiux-designer
+    specialty: "デザイン, UX"
+    status: idle
+  - name: marketing-strategist
+    specialty: "コンテンツ, SNS, SEO"
+    status: idle
+
+# MCP 構成
+active_mcps:
+  installed:
+    - name: filesystem
+      status: active
+      category: core
+    - name: git
+      status: active
+      category: core
+    - name: memory
+      status: active
+      category: core
+    - name: web-fetch
+      status: active
+      category: network
+    - name: database
+      status: active
+      category: data
+  pending_evaluation:
+    - name: zenn
+      status: pending
+      priority: high
+    - name: note
+      status: pending
+      priority: high
+    - name: twitter
+      status: pending
+      priority: high
+    - name: figma
+      status: pending
+      priority: medium
+  stats:
+    installed_count: 5
+    max_servers: 10
+    estimated_tools: 25
+    max_tools: 80
+
+# 収益追跡
+revenue:
+  current: 0
+  target: 610000
+  progress_pct: 0
+  deadline: "Month 8"
+  currency: "JPY"
+
+# スキル吸収エンジン状態
+skill_engine:
+  total_skills_acquired: 1
+  pending_proposals: 0
+  patterns_learned: 1
+  last_absorption: "2026-02-06T14:30:00Z"
+
+# オーケストレーション状態
+orchestration:
+  total_tasks_created: 5
+  tasks_in_progress: 0
+  tasks_completed: 0
+  tasks_blocked: 0
+  last_task_generation: "2026-02-05T12:05:00Z"
+
+# セッション履歴
+last_orchestration: "2026-02-08T00:00:00Z"
+last_mcp_scan: null
+last_weekly_report: null
+
+# メモ
+notes: |
+  初回オーケストレーション・プロトコル適用。
+  既存の5タスク（LP構築関連）の状態確認と再始動が必要。
+  MCP 探索の初回スキャンを実施予定。

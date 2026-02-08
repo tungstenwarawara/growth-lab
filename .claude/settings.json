@@ -45,9 +45,30 @@
       "lead": "opus",
       "implementer": "sonnet",
       "reviewer": "haiku",
-      "explorer": "haiku"
+      "explorer": "haiku",
+      "designer": "sonnet",
+      "marketer": "sonnet"
     },
     "monthlyBudget": "$200",
-    "notes": "Haiku は Sonnet の 90% の性能を 3 倍のコスト削減で実現"
+    "maxConcurrentAgents": 3,
+    "notes": "6体制だが同時稼働は3体まで。Haiku は Sonnet の 90% の性能を 3 倍のコスト削減で実現"
+  },
+
+  "agentTeam": {
+    "agents": {
+      "team-lead": "大賢者 — オーケストレーション・全体統括",
+      "frontend-member": "フロントエンド実装",
+      "backend-member": "バックエンド実装",
+      "reviewer": "コードレビュー・品質保証",
+      "uiux-designer": "UI/UXデザイン・Figma連携",
+      "marketing-strategist": "マーケティング・コンテンツ戦略"
+    },
+    "mcpServers": {
+      "core": ["filesystem", "git", "memory"],
+      "design": ["figma"],
+      "marketing": ["twitter", "zenn", "note"],
+      "data": ["database", "web-fetch"],
+      "payment": ["stripe"]
+    }
   }
 }

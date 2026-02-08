@@ -1,33 +1,37 @@
-# MCP Server Registry
+# MCP Server Registry v2
 # 利用可能なMCPサーバーとその状態を管理
+# 大賢者が自律的に更新する
 
-version: "1.0"
-last_updated: "2026-02-06"
+version: "2.0"
+last_updated: "2026-02-08"
+updated_by: great-sage
 
-# インストール済みサーバー（dev-team で使用中）
+# ========================================
+# インストール済みサーバー（現在稼働中）
+# ========================================
 installed_servers:
   - name: "filesystem"
     category: core
     description: "ファイルシステム操作（読み取り、書き込み、検索）"
-    used_by: [lead, frontend, backend, reviewer]
+    used_by: [great-sage, frontend, backend, reviewer, uiux-designer, marketing-strategist]
     status: active
 
   - name: "git"
     category: core
     description: "Git操作（コミット、ブランチ、差分）"
-    used_by: [lead, reviewer]
+    used_by: [great-sage, reviewer]
     status: active
 
   - name: "memory"
     category: core
     description: "永続メモリ（セッション間でのデータ保持）"
-    used_by: [lead]
+    used_by: [great-sage]
     status: active
 
   - name: "web-fetch"
     category: network
     description: "Web取得（URL からコンテンツ取得）"
-    used_by: [frontend]
+    used_by: [frontend, uiux-designer, marketing-strategist]
     status: active
 
   - name: "database"
@@ -36,99 +40,199 @@ installed_servers:
     used_by: [backend]
     status: active
 
-# 発見済み・未インストール
-discovered_servers:
-  # 画像処理関連
-  - name: "@anthropic/image-tools"
-    category: media
-    description: "画像処理ツール（リサイズ、圧縮、変換）"
-    discovered_at: "2026-02-06"
-    discovered_by: null
-    use_case: null
-    install_priority: low
-    estimated_value: medium
+# ========================================
+# 導入予定（Phase 0.5 — 最優先）
+# ========================================
+pending_installation:
+  # === 収益直結 ===
+  - name: "stripe"
+    category: payment
+    description: "Stripe決済管理（顧客、支払い、サブスク、請求書）"
+    source: "https://mcp.stripe.com"
+    type: "streamable-http"
+    install_priority: critical
+    estimated_value: critical
+    use_case: "テンプレート販売・Premium課金・サービス請求の自動化"
+    assigned_to: backend
+    target_phase: "0.5"
 
-  # ブラウザ自動化
+  # === マーケティング・コンテンツ ===
+  - name: "twitter"
+    category: social
+    description: "Twitter/X 投稿・検索・分析（OAuth 2.0）"
+    source: "https://github.com/EnesCinr/twitter-mcp"
+    type: "local"
+    install_priority: critical
+    estimated_value: critical
+    use_case: "Build in Public 毎日投稿の自動化・エンゲージメント分析"
+    assigned_to: marketing-strategist
+    target_phase: "0.5"
+
+  - name: "zenn"
+    category: content
+    description: "Zenn記事/Book データ取得（Dev API経由）"
+    source: "https://github.com/shibuiwilliam/mcp-server-zenn"
+    type: "local"
+    install_priority: high
+    estimated_value: high
+    use_case: "記事メトリクス取得・コンテンツレジストリ自動更新"
+    assigned_to: marketing-strategist
+    target_phase: "0.5"
+
+  - name: "note"
+    category: content
+    description: "note.com 記事管理・投稿（email/password認証）"
+    source: "https://github.com/GitHub30/note-mcp-server"
+    type: "local"
+    install_priority: high
+    estimated_value: high
+    use_case: "note記事の投稿・管理・メトリクス取得"
+    assigned_to: marketing-strategist
+    target_phase: "0.5"
+    security_note: "認証情報の取り扱いに注意（環境変数で管理）"
+
+  # === デザイン ===
+  - name: "figma"
+    category: design
+    description: "Figmaデザインファイル連携（デザイン→コード変換）"
+    source: "https://mcp.figma.com/mcp"
+    type: "remote"
+    install_priority: high
+    estimated_value: high
+    use_case: "LP/プロダクトのデザイン→コード自動変換、デザインシステム管理"
+    assigned_to: uiux-designer
+    target_phase: "1"
+
+# ========================================
+# 発見済み・評価待ち（Phase 1-2）
+# ========================================
+discovered_servers:
+  - name: "ahrefs"
+    category: seo
+    description: "Ahrefs SEO分析（キーワード、バックリンク、競合）"
+    discovered_at: "2026-02-08"
+    discovered_by: great-sage
+    install_priority: medium
+    estimated_value: high
+    use_case: "Zenn記事のSEO最適化、競合キーワード分析"
+    target_phase: "1"
+
+  - name: "google-analytics-4"
+    category: analytics
+    description: "GA4 アクセス解析（200+指標）"
+    discovered_at: "2026-02-08"
+    discovered_by: great-sage
+    install_priority: medium
+    estimated_value: high
+    use_case: "LP・ポートフォリオのアクセス分析"
+    target_phase: "1"
+
+  - name: "supabase"
+    category: data
+    description: "Supabase直接操作（Auth, Storage含む）"
+    discovered_at: "2026-02-08"
+    discovered_by: great-sage
+    install_priority: medium
+    estimated_value: medium
+    use_case: "database MCPの拡張版として検討"
+    target_phase: "2"
+
   - name: "@anthropic/puppeteer"
     category: automation
     description: "ブラウザ自動化（E2Eテスト、スクレイピング）"
-    discovered_at: null
-    discovered_by: null
-    use_case: null
+    discovered_at: "2026-02-06"
     install_priority: low
     estimated_value: medium
 
-  # Slack 連携
   - name: "@anthropic/slack"
     category: communication
-    description: "Slack 連携（通知、メッセージ送信）"
-    discovered_at: null
-    discovered_by: null
-    use_case: "Director への通知"
-    install_priority: medium
-    estimated_value: high
+    description: "Slack連携（Director通知）"
+    discovered_at: "2026-02-06"
+    install_priority: low
+    estimated_value: medium
 
-# 外部レジストリソース（Phase 2 以降で使用）
+  - name: "zapier"
+    category: automation
+    description: "7,000+アプリ連携の自動化ハブ"
+    discovered_at: "2026-02-08"
+    discovered_by: great-sage
+    install_priority: low
+    estimated_value: medium
+    use_case: "クロスプラットフォーム自動化（Phase 3）"
+    target_phase: "3"
+
+# ========================================
+# 探索ソース（大賢者が定期スキャン）
+# ========================================
 discovery_sources:
-  - name: "Anthropic Official"
-    url: "https://github.com/anthropics/mcp-servers"
-    type: github
-    enabled: false  # Phase 1 では無効
+  tier_1:
+    - name: "Anthropic Official"
+      url: "https://github.com/anthropics/mcp-servers"
+      type: github
+      enabled: true
+    - name: "mcp.so"
+      url: "https://mcp.so/"
+      type: registry
+      enabled: true
+      note: "17,500+サーバー登録済み（2026年2月時点）"
 
-  - name: "MCP.run Registry"
-    url: "https://mcp.run/registry"
-    type: api
-    enabled: false
+  tier_2:
+    - name: "Awesome MCP (punkpeye)"
+      url: "https://github.com/punkpeye/awesome-mcp-servers"
+      type: github
+      enabled: true
+    - name: "Awesome MCP (wong2)"
+      url: "https://github.com/wong2/awesome-mcp-servers"
+      type: github
+      enabled: true
+    - name: "MCPMarket"
+      url: "https://mcpmarket.com/"
+      type: registry
+      enabled: true
 
-  - name: "Awesome MCP"
-    url: "https://github.com/punkpeye/awesome-mcp-servers"
-    type: github
-    enabled: false
+  tier_3:
+    - name: "npm registry"
+      url: "https://www.npmjs.com/search?q=mcp-server"
+      type: npm
+      enabled: false
+      note: "Phase 2以降で有効化"
 
-# カテゴリ定義
+# ========================================
+# カテゴリ定義（拡張版）
+# ========================================
 categories:
-  core:
-    description: "基本機能（ファイル、Git、メモリ）"
-    priority: highest
+  core: { description: "基本機能（ファイル、Git、メモリ）", priority: highest }
+  payment: { description: "決済・課金", priority: critical }
+  social: { description: "SNS連携（Twitter、LinkedIn等）", priority: critical }
+  content: { description: "コンテンツプラットフォーム（Zenn、note等）", priority: high }
+  design: { description: "デザインツール（Figma等）", priority: high }
+  network: { description: "ネットワーク（HTTP、WebSocket）", priority: high }
+  data: { description: "データベース・ストレージ", priority: high }
+  seo: { description: "SEO分析", priority: medium }
+  analytics: { description: "アクセス解析", priority: medium }
+  automation: { description: "自動化（ブラウザ、ワークフロー）", priority: medium }
+  communication: { description: "コミュニケーション（Slack、Discord）", priority: low }
+  media: { description: "メディア処理（画像、動画）", priority: low }
 
-  network:
-    description: "ネットワーク関連（HTTP、WebSocket）"
-    priority: high
-
-  data:
-    description: "データ関連（DB、キャッシュ）"
-    priority: high
-
-  media:
-    description: "メディア処理（画像、動画、音声）"
-    priority: medium
-
-  automation:
-    description: "自動化（ブラウザ、タスク）"
-    priority: medium
-
-  communication:
-    description: "コミュニケーション（Slack、Discord）"
-    priority: low
-
-  ai:
-    description: "AI関連（埋め込み、検索）"
-    priority: low
-
-# インストール提案のルール
+# ========================================
+# インストールルール
+# ========================================
 installation_rules:
-  # 自動提案の条件
-  auto_suggest:
-    # 同じ use_case が3回以上検出されたら提案
-    min_detections: 3
-    # 優先度が high 以上
-    min_priority: medium
+  constraints:
+    max_servers: 10
+    max_tools: 80
+    monthly_budget: "$0"  # 有料MCP予算はゼロ（無料のみ）
+    max_evaluations_per_week: 5
 
-  # 提案時の承認レベル
+  auto_suggest:
+    min_detections: 3
+    min_priority: medium
+    score_threshold: 60  # 100点満点中
+
   approval_level: director  # MCP インストールは Director 承認必須
 
-  # インストール前の検証
   pre_install_checks:
     - check_compatibility: true
     - check_security: true
     - estimate_cost_impact: true
+    - test_in_sandbox: true

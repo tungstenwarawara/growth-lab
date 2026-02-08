@@ -9,7 +9,7 @@
 #   - 更新時は last_updated と updated_by を必ず書き換える
 # =============================================================================
 
-last_updated: "2026-02-08T17:30:00+09:00"
+last_updated: "2026-02-09T02:30:00+09:00"
 updated_by: great-sage
 
 platforms:
@@ -18,20 +18,20 @@ platforms:
     username: "mikkabouzu_log"
     profile_url: "https://zenn.dev/mikkabouzu_log"
     articles:
-      - id: "great-sage-claude-code"
-        title: "転スラの大賢者をClaude Codeで再現してみた"
-        url: "https://zenn.dev/mikkabouzu_log/articles/great-sage-claude-code"
+      - id: "a39fd6228ae729"
+        title: "転スラの『大賢者』をClaude Codeで再現して、今年の投資回収計画達成を目指す！"
+        url: "https://zenn.dev/mikkabouzu_log/articles/a39fd6228ae729"
         published_at: "2026-02-08"
         status: published
         category: tech
-        tags: [claude, mcp, ai, 個人開発]
+        tags: [個人開発, 自動化, Model Context Protocol, AIエージェント, Claude Code]
         metrics:
           pv: 0
           likes: 0
           comments: 0
           bookmarks: 0
         sns_shared: false
-        notes: "本日公開。初のZenn記事。"
+        notes: "2/8公開。初のZenn記事。9h経過、いいね0。"
 
       - id: "00-project-journey"
         title: "【実践記録】MCP + tmux でAIエージェントチームを作った話"
@@ -54,7 +54,7 @@ platforms:
       total_published_articles: 1
       total_likes: 0
       total_pv: 0
-      last_synced: "2026-02-08T17:30:00+09:00"
+      last_synced: "2026-02-09T02:30:00+09:00"
 
   note:
     base_url: "https://note.com"
@@ -69,7 +69,7 @@ platforms:
         category: opinion
         tags: [AI, 転スラ, 大賢者, 個人開発]
         metrics: { pv: 0, likes: 0, comments: 0 }
-        notes: "本日公開。大賢者プロジェクトの宣言記事。"
+        notes: "2/8公開。8h経過、スキ0。"
 
       - id: "experiment-006"
         title: "【実験006】NotionのDBを「ゲームのステータス画面」にする（Project Oracle）"
@@ -125,16 +125,16 @@ platforms:
         status: published
         category: opinion
         tags: [人生OS, 宣言]
-        metrics: { pv: 0, likes: 0, comments: 0 }
+        metrics: { pv: 0, likes: 4, comments: 0 }
 
     stats:
       total_articles: 8
       total_published_articles: 8
-      total_likes: 7
+      total_likes: 11
       total_pv: 0
       followers: 2
       following: 2
-      last_synced: "2026-02-08T17:30:00+09:00"
+      last_synced: "2026-02-09T02:30:00+09:00"
 
   twitter:
     base_url: "https://x.com"
@@ -144,26 +144,28 @@ platforms:
       followers: 0
       following: 3
       total_posts: 10
-      last_synced: "2026-02-08T17:30:00+09:00"
-    notes: "投稿10件済み。BOOTH告知23Views。個別投稿は未追跡。"
+      last_synced: "2026-02-09T02:30:00+09:00"
+    notes: "投稿10件、フォロワー0。フォロー3。個別投稿は未追跡。"
 
   booth:
     base_url: "https://booth.pm"
     shop_url: "https://mikkabouzu-log.booth.pm"
     products:
       - id: "saas-starter-kit"
-        title: "SaaS Starter Kit"
+        title: "Next.js SaaS スターターキット｜認証・決済・ダッシュボード付き"
+        url: "https://mikkabouzu-log.booth.pm/items/7942992"
         price: 5000
         status: published
-        likes: 1
+        likes: 0
         sales: 0
-        notes: "売上未確認。"
+        notes: "販売数0、売上¥0。管理画面で確認済み。"
 
     stats:
       total_products: 1
       total_sales: 0
       total_revenue: 0
-      last_synced: "2026-02-08T17:30:00+09:00"
+      manage_url: "https://manage.booth.pm"
+      last_synced: "2026-02-09T02:30:00+09:00"
 
 # -----------------------------------------------------------------------------
 # 関連パス

@@ -1,15 +1,21 @@
-# Dev Team — Agent Team Template
+# Dev Team v2 — Agent Team Template
 #
-# フルスタック開発チーム構成
+# 6体制フルチーム構成（大賢者オーケストレーション）
 # MCP + tmux ハイブリッドアーキテクチャ
 #
 # Usage:
 #   ./agent-team/scripts/setup-team.sh ./agent-team/templates/dev-team
+#
+# v2 変更点:
+#   - UI/UX Designer 追加（Figma MCP連携）
+#   - Marketing Strategist 追加（Twitter/Zenn/note MCP連携）
+#   - 大賢者がオーケストレーターとして全体を統括
 
 team:
   name: dev-team
-  description: "フルスタック開発チーム — フロントエンド・バックエンドの並列実装"
-  max_concurrent: 3  # Claude Max $200/月の制約内
+  version: "2.0"
+  description: "6体制フルチーム — 開発・デザイン・マーケティングの統合チーム"
+  max_concurrent: 3  # Claude Max $200/月の制約内（同時稼働上限）
 
   # tmux session 設定
   session:
@@ -22,23 +28,27 @@ team:
     messages: .agent-team/messages
     status: .agent-team/status
     output: .agent-team/output
+    content: .agent-team/content  # v2: コンテンツ管理
 
-  # チーム構成
+  # === 大賢者（Team Lead / Orchestrator）===
   lead:
-    name: lead
-    role: architect
+    name: great-sage
+    role: orchestrator
     instructions: roles/lead.md
-    description: "タスク分解・進捗管理・品質担保"
+    description: "全体オーケストレーション・タスク自動生成・進捗監視・スキル吸収"
+    model: opus
     mcp_servers:
       - filesystem
       - git
       - memory
 
+  # === 実装メンバー ===
   members:
     - name: frontend
       role: frontend-developer
       instructions: roles/frontend.md
-      description: "UI/UX実装、コンポーネント開発"
+      description: "UI実装、コンポーネント開発、状態管理"
+      model: sonnet
       mcp_servers:
         - filesystem
         - web-fetch
@@ -46,22 +56,52 @@ team:
     - name: backend
       role: backend-developer
       instructions: roles/backend.md
-      description: "API・DB・ビジネスロジック実装"
+      description: "API・DB・認証・決済ロジック実装"
+      model: sonnet
       mcp_servers:
         - filesystem
         - database
 
+    - name: uiux-designer
+      role: ui-ux-designer
+      instructions: roles/uiux-designer.md
+      description: "デザインシステム、Figma連携、ビジュアル品質"
+      model: sonnet
+      mcp_servers:
+        - filesystem
+        - figma
+        - web-fetch
+
+    - name: marketing-strategist
+      role: marketing-strategist
+      instructions: roles/marketing-strategist.md
+      description: "コンテンツ戦略、SNS運用、SEO、コピーライティング"
+      model: sonnet
+      mcp_servers:
+        - filesystem
+        - twitter
+        - zenn
+        - note
+        - web-fetch
+
+  # === レビュアー ===
   reviewer:
     name: reviewer
     role: code-reviewer
     instructions: roles/reviewer.md
-    description: "コードレビュー・品質チェック"
+    description: "コードレビュー・品質チェック・セキュリティ検証"
+    model: haiku
     mcp_servers:
       - filesystem
       - git
 
-# コスト設計メモ:
-# - Lead + 2 Members + Reviewer = 4エージェント
-# - ただし同時稼働は max_concurrent: 3 に制限
-# - Reviewer は Members の実装完了後に起動（イベント駆動）
+# コスト設計メモ（v2）:
+# - 大賢者(Lead) + 4 Members + Reviewer = 6エージェント
+# - 同時稼働は max_concurrent: 3 に制限
+# - 運用パターン:
+#   A) 開発集中: 大賢者 + Frontend + Backend（Reviewer は完了後に起動）
+#   B) デザイン: 大賢者 + Frontend + UI/UX Designer
+#   C) マーケ集中: 大賢者 + Marketing + UI/UX Designer
+#   D) レビュー: 大賢者 + Reviewer + 修正担当1名
 # - ファイルベース通信でオーケストレーションのトークン消費ゼロ
+# - MCP は必要時のみ接続（常時接続しない）

@@ -1,0 +1,333 @@
+# =============================================================================
+# Content Backlog - コンテンツ企画バックログ
+# =============================================================================
+# 大賢者が管理するコンテンツアイデアのバックログ。
+# パイプラインの idea / outline ステージにあるコンテンツを管理する。
+#
+# 優先度基準:
+#   high   - フライホイール直結、旬度が高い、今すぐ書くべき
+#   medium - 重要だが緊急ではない、計画的に進める
+#   low    - いつか書きたい、ストック的なネタ
+# =============================================================================
+
+last_updated: "2026-02-08T00:00:00Z"
+updated_by: great-sage
+
+# -----------------------------------------------------------------------------
+# バックログアイテム
+# -----------------------------------------------------------------------------
+items:
+  # =========================================================================
+  # Zenn 記事
+  # =========================================================================
+  - id: zenn-001
+    title: "MCP + tmux でAIエージェントチームを作る"
+    platform: zenn
+    category: tutorial
+    stage: outline
+    priority: high
+    target_audience: "AIエージェントに興味がある中級エンジニア"
+    description: |
+      MCP（Model Context Protocol）と tmux を組み合わせて、
+      複数のAIエージェントがチームとして協働するフレームワークの構築方法を解説する。
+      実際のコード例と設計思想を含む実践的なチュートリアル。
+    outline:
+      - "はじめに: なぜAIエージェントに「チーム」が必要なのか"
+      - "アーキテクチャ概要: MCP + tmux + YAML通信"
+      - "ステップ1: tmuxセッションの構築"
+      - "ステップ2: MCP サーバーの設定"
+      - "ステップ3: YAML ファイル通信プロトコル"
+      - "ステップ4: ロール定義（Lead, Frontend, Backend, Reviewer）"
+      - "実践: ランディングページを4エージェントで作る"
+      - "コスト分析: $200/月の予算内で運用する設計"
+      - "まとめと次のステップ"
+    estimated_words: 5000
+    estimated_time: "3日"
+    tags:
+      - claude
+      - mcp
+      - tmux
+      - ai-agent
+      - 個人開発
+    related_products:
+      - /agent-team
+    flywheel_score: 5  # 1-5: フライホイール貢献度
+    notes: |
+      フレームワークのコア記事。これが最も重要な技術解説になる。
+      GitHub公開と同時に投稿するのが理想。
+    created_at: "2026-02-08T00:00:00Z"
+
+  - id: zenn-002
+    title: "$200/月でマルチエージェントを運用する方法"
+    platform: zenn
+    category: tech
+    stage: idea
+    priority: high
+    target_audience: "Claude Maxを使っている/検討中のエンジニア"
+    description: |
+      Claude Max $200/月という予算制約の中で、マルチエージェントを効率的に
+      運用するためのコスト最適化テクニックを解説する。
+      ファイルベース通信、イベント駆動設計、同時稼働数の制御など、
+      実際の運用から得られた知見を共有する。
+    outline: []
+    estimated_words: 4000
+    estimated_time: "2日"
+    tags:
+      - claude
+      - claude-max
+      - コスト最適化
+      - ai-agent
+      - 個人開発
+    related_products:
+      - /agent-team
+    flywheel_score: 5
+    notes: |
+      "$200/月"というキーワードは検索需要が高いと想定。
+      実際の数字を公開することで信頼性を確保する。
+      Build in Public のコア記事。
+    created_at: "2026-02-08T00:00:00Z"
+
+  # =========================================================================
+  # Zenn Book
+  # =========================================================================
+  - id: zenn-book-001
+    title: "Claude Code Agent Team 実践ガイド"
+    platform: zenn
+    category: book
+    stage: idea
+    priority: high
+    target_audience: "AIエージェント開発に本格的に取り組みたいエンジニア"
+    description: |
+      Agent Team Framework を使ったマルチエージェント開発の包括的なガイドブック。
+      設計思想から実装、運用、トラブルシューティングまでを網羅する。
+      Zenn Book として有料販売（1,500円）。
+    outline:
+      - "第1章: はじめに -- AIエージェントチームとは"
+      - "第2章: 環境構築 -- Claude Code + MCP + tmux のセットアップ"
+      - "第3章: アーキテクチャ -- チームメタファーと通信設計"
+      - "第4章: ロール設計 -- Lead, Frontend, Backend, Reviewer"
+      - "第5章: YAML通信プロトコル -- トークンゼロの秘密"
+      - "第6章: 実践1 -- ランディングページをチームで作る"
+      - "第7章: 実践2 -- SaaSテンプレートをチームで作る"
+      - "第8章: 自己改善ループ -- 大賢者スキルの実装"
+      - "第9章: コスト最適化 -- $200/月で最大の価値を"
+      - "第10章: トラブルシューティング"
+      - "付録: テンプレート集・チートシート"
+    estimated_words: 30000
+    estimated_time: "3週間"
+    price: 1500
+    tags:
+      - claude
+      - mcp
+      - ai-agent
+      - tmux
+      - マルチエージェント
+    related_products:
+      - /agent-team
+    flywheel_score: 5
+    notes: |
+      収益の柱になる重要プロダクト。
+      Zenn記事で興味を引き、Bookで深掘りする導線設計。
+      Month 2-3 での完成を目標とする。
+      各章は独立して読めるように設計し、一部を無料公開して集客する。
+    created_at: "2026-02-08T00:00:00Z"
+
+  # =========================================================================
+  # note 記事（非エンジニア向け）
+  # =========================================================================
+  - id: note-001
+    title: "AIに「チーム」で仕事を任せる時代が来た"
+    platform: note
+    category: opinion
+    stage: idea
+    priority: medium
+    target_audience: "非エンジニアだがAI活用に興味がある社会人"
+    description: |
+      AIエージェントが「チーム」として協働する時代の到来を、
+      技術的な詳細を省いて分かりやすく解説する。
+      Agent Team Framework の開発経験を基にした、
+      未来の働き方についてのオピニオン記事。
+    outline:
+      - "導入: ChatGPTの次に来るもの"
+      - "AIが「チーム」になるとは？"
+      - "実際にAIチームを作ってみた結果"
+      - "人間の役割はどう変わるのか"
+      - "まとめ: Director（監督）としての働き方"
+    estimated_words: 3000
+    estimated_time: "1日"
+    tags:
+      - AI
+      - 働き方
+      - AIエージェント
+      - 未来の仕事
+    related_products:
+      - /agent-team
+    flywheel_score: 3
+    notes: |
+      note はZennよりも非エンジニア層にリーチしやすい。
+      技術的な詳細はZenn記事へ誘導する。
+      Month 3以降で開始予定。
+    created_at: "2026-02-08T00:00:00Z"
+
+  - id: note-002
+    title: "MacBook + AI で月10万円稼ぐまでの記録"
+    platform: note
+    category: report
+    stage: idea
+    priority: medium
+    target_audience: "副業・個人開発に興味がある社会人"
+    description: |
+      MacBook（25万円）とClaude Max（$200/月）への投資を
+      個人収益で回収するチャレンジの実況レポート。
+      具体的な数字と戦略を公開し、再現性のある情報を提供する。
+    outline:
+      - "投資内容と回収目標"
+      - "月ごとの収益推移"
+      - "何が売れたか/売れなかったか"
+      - "AIをどう活用したか"
+      - "誰でもできる再現可能な方法"
+    estimated_words: 3000
+    estimated_time: "1日"
+    tags:
+      - 副業
+      - 個人開発
+      - AI活用
+      - 投資回収
+      - BuildInPublic
+    related_products: []
+    flywheel_score: 4
+    notes: |
+      収益が出始めたタイミングで書く。
+      数字の公開が信頼性とバイラル性を生む。
+      Month 3-4 以降に実績が溜まってから執筆。
+    created_at: "2026-02-08T00:00:00Z"
+
+  # =========================================================================
+  # Twitter スレッド
+  # =========================================================================
+  - id: twitter-thread-001
+    title: "AIエージェントチームを作って学んだ10のこと"
+    platform: twitter
+    category: thread
+    stage: idea
+    priority: high
+    target_audience: "AIエージェント/個人開発に興味があるエンジニア"
+    description: |
+      Agent Team Framework の開発過程で得た10の学びを
+      Twitterスレッド形式でまとめる。
+      各ツイートは独立して価値があり、リツイートされやすい形式にする。
+    outline:
+      - "1/ AIエージェントに「チーム」を作らせたら面白いことが起きた（導入）"
+      - "2/ 学び1: ファイル通信はトークン消費ゼロ（コスト設計）"
+      - "3/ 学び2: 役割分担が品質を上げる（ロール設計）"
+      - "4/ 学び3: $200/月の制約が設計の質を高める（制約の力）"
+      - "5/ 学び4: エージェントにも「レビュー」が必要（品質管理）"
+      - "6/ 学び5: tmuxの視覚化で全体像が見える（開発体験）"
+      - "7/ 学び6: YAML通信は人間にも読みやすい（透明性）"
+      - "8/ 学び7: 自己改善ループが最強の機能（大賢者）"
+      - "9/ 学び8: Build in Publicとの相性が抜群（マーケティング）"
+      - "10/ 学び9: フレームワーク開発そのものがコンテンツ（フライホイール）"
+      - "11/ 学び10: 個人開発の限界をAIチームが突破する（結論）"
+      - "12/ 詳細は記事にまとめました（Zenn記事リンク）"
+    estimated_time: "2時間"
+    tags:
+      - "#AIエージェント"
+      - "#ClaudeCode"
+      - "#BuildInPublic"
+      - "#個人開発"
+    related_products:
+      - /agent-team
+    flywheel_score: 5
+    notes: |
+      Zenn記事 zenn-001 の公開と同時にスレッドを投稿する。
+      記事への流入を最大化するための拡散コンテンツ。
+    created_at: "2026-02-08T00:00:00Z"
+
+  - id: twitter-thread-002
+    title: "Claude Code の知られざるTips 7選"
+    platform: twitter
+    category: thread
+    stage: idea
+    priority: medium
+    target_audience: "Claude Code ユーザー/検討中のエンジニア"
+    description: |
+      Claude Code を日常的に使う中で発見した、
+      公式ドキュメントには載っていない実践的なTipsを
+      Twitterスレッド形式で共有する。
+    outline:
+      - "1/ Claude Code を毎日使って見つけたTipsをまとめます"
+      - "2/ Tip 1: CLAUDE.md の書き方で出力品質が激変する"
+      - "3/ Tip 2: スキル機能でプロジェクト固有の知識を永続化"
+      - "4/ Tip 3: Agent Teams で並列実行（実験的機能）"
+      - "5/ Tip 4: MCP サーバーの選び方と設定のコツ"
+      - "6/ Tip 5: ファイルベース通信でトークン節約"
+      - "7/ Tip 6: コミット規約を CLAUDE.md に書くだけで守ってくれる"
+      - "8/ Tip 7: プロンプトテンプレートの活用法"
+      - "9/ 詳しくは Zenn にまとめる予定です"
+    estimated_time: "1時間"
+    tags:
+      - "#ClaudeCode"
+      - "#AIエージェント"
+      - "#個人開発"
+      - "#プログラミング"
+    related_products: []
+    flywheel_score: 4
+    notes: |
+      Claude Code ユーザーコミュニティへのリーチを狙う。
+      反響次第でZenn記事に展開する。
+    created_at: "2026-02-08T00:00:00Z"
+
+  - id: twitter-thread-003
+    title: "投資回収チャレンジ Month 1 結果発表"
+    platform: twitter
+    category: thread
+    stage: idea
+    priority: medium
+    target_audience: "Build in Public / 個人開発に興味がある層"
+    description: |
+      MacBook + Claude Max の投資回収チャレンジ Month 1 の結果を
+      具体的な数字とともにスレッドで報告する。
+    outline:
+      - "1/ MacBook(25万) + Claude Max($200/月) の投資回収チャレンジ、Month 1 の結果"
+      - "2/ 収益: 0円（正直）-- でも土台は作れた"
+      - "3/ 作ったもの一覧（スクショ付き）"
+      - "4/ 学び: 最初の1ヶ月は種まき期間"
+      - "5/ Month 2 の計画と目標"
+      - "6/ 応援してくれる方はフォローお願いします"
+    estimated_time: "1時間"
+    tags:
+      - "#BuildInPublic"
+      - "#個人開発"
+      - "#投資回収チャレンジ"
+    related_products: []
+    flywheel_score: 4
+    notes: |
+      2月末に投稿予定。
+      正直な数字を出すことで信頼性を確保。
+      0円でも「何を作ったか」を見せることが大事。
+    created_at: "2026-02-08T00:00:00Z"
+
+# -----------------------------------------------------------------------------
+# バックログ統計（大賢者が自動計算）
+# -----------------------------------------------------------------------------
+stats:
+  total_items: 8
+  by_platform:
+    zenn: 3     # 記事2 + Book1
+    note: 2
+    twitter: 3
+  by_priority:
+    high: 4
+    medium: 4
+    low: 0
+  by_stage:
+    idea: 7
+    outline: 1
+    draft: 0
+    review: 0
+  next_action: |
+    優先度 high のアイテムから着手する。
+    zenn-001（MCP + tmux 記事）は構成案が最も進んでおり、
+    次のアクションは draft ステージへの移行。
+    既存の下書き（00-project-journey-draft.md）をベースに
+    内容を整理・拡充する。

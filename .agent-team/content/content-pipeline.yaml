@@ -1,0 +1,270 @@
+# =============================================================================
+# Content Pipeline - コンテンツの企画 → 執筆 → 公開 → 分析の全フロー
+# =============================================================================
+# 大賢者がコンテンツのライフサイクル全体を管理するためのパイプライン定義。
+# 各ステージで大賢者が取るべきアクションを明示する。
+# =============================================================================
+
+pipeline:
+  version: "1.0"
+  last_updated: "2026-02-08T00:00:00Z"
+
+  # ---------------------------------------------------------------------------
+  # ステージ定義
+  # ---------------------------------------------------------------------------
+  stages:
+    - id: idea
+      name: "アイデア"
+      description: "コンテンツのアイデアが生まれた段階。バックログに登録。"
+      great_sage_actions:
+        - action: "バックログ登録"
+          description: "backlog.yaml にアイデアを追加する"
+          file: "/.agent-team/content/backlog.yaml"
+        - action: "重複チェック"
+          description: "既存コンテンツとの重複・類似をレジストリで確認"
+        - action: "優先度判定"
+          description: |
+            以下の基準で優先度を判定:
+            - フライホイール貢献度（開発 → 発信 → 集客 → 収益）
+            - 旬度（トレンドとの一致）
+            - 製品との関連性
+            - 執筆コスト（所要時間）
+        - action: "カテゴリ分類"
+          description: "tech / opinion / tutorial / report のいずれかに分類"
+      exit_criteria:
+        - "backlog.yaml に登録済み"
+        - "優先度（high/medium/low）が設定されている"
+        - "対象プラットフォームが決定している"
+
+    - id: outline
+      name: "構成案"
+      description: "記事の構成・見出しを策定する段階。"
+      great_sage_actions:
+        - action: "構成案レビュー"
+          description: |
+            以下を確認:
+            - ターゲット読者が明確か
+            - 見出し構成がSEOに最適化されているか
+            - 差別化ポイントがあるか
+        - action: "関連コンテンツ提案"
+          description: "内部リンクで紐づけるべき既存コンテンツを提案"
+        - action: "タスク作成"
+          description: |
+            .agent-team/tasks/ に執筆タスクを作成し、
+            適切なメンバーにアサインする
+      exit_criteria:
+        - "見出し構成が確定している"
+        - "ターゲット読者が定義されている"
+        - "想定文字数が見積もられている"
+
+    - id: draft
+      name: "下書き"
+      description: "記事本文の執筆段階。"
+      great_sage_actions:
+        - action: "進捗監視"
+          description: "タスクのステータスを追跡し、ブロッカーを検知"
+        - action: "品質チェックポイント"
+          description: |
+            下書き完了時に以下を確認:
+            - コードブロックが正しく動作するか
+            - 画像・図表が適切に配置されているか
+            - 文体がプラットフォームに合っているか
+        - action: "メタデータ準備"
+          description: |
+            Zenn: frontmatter（emoji, type, topics）
+            note: タイトル画像、ハッシュタグ
+      exit_criteria:
+        - "本文が完成している"
+        - "メタデータが設定されている"
+        - "ローカルパスが registry.yaml に登録されている"
+
+    - id: review
+      name: "レビュー"
+      description: "公開前の品質レビュー段階。"
+      great_sage_actions:
+        - action: "Reviewer アサイン"
+          description: "Reviewer エージェントにレビュータスクを作成"
+        - action: "チェックリスト実行"
+          description: |
+            レビューチェックリスト:
+            - [ ] 誤字脱字がないか
+            - [ ] 技術的な誤りがないか
+            - [ ] SEOタイトルが最適か（Zenn: 60文字以内）
+            - [ ] ハッシュタグが適切か
+            - [ ] CTA（行動喚起）が含まれているか
+            - [ ] 関連記事リンクが設定されているか
+            - [ ] OGP画像が設定されているか
+        - action: "Director 承認リクエスト"
+          description: "最終公開判断を Director（人間）に委ねる"
+      exit_criteria:
+        - "Reviewer のレビューが完了している"
+        - "Director の承認が得られている"
+
+    - id: published
+      name: "公開済み"
+      description: "記事がプラットフォームに公開された段階。"
+      great_sage_actions:
+        - action: "レジストリ更新"
+          description: |
+            registry.yaml を更新:
+            - status を published に変更
+            - url を設定
+            - published_at を設定
+        - action: "SNS拡散文生成"
+          description: |
+            Twitter投稿文を自動生成:
+            - 140文字以内
+            - 記事URLを含む
+            - ハッシュタグを含む
+            - 複数パターン生成（Director が選択）
+        - action: "カレンダー同期"
+          description: "content-calendar.md のステータスを更新"
+      exit_criteria:
+        - "registry.yaml が最新状態"
+        - "SNS拡散文が生成されている"
+
+    - id: promoted
+      name: "SNS拡散済み"
+      description: "SNSで拡散が完了した段階。"
+      great_sage_actions:
+        - action: "拡散記録"
+          description: |
+            registry.yaml を更新:
+            - sns_shared を true に設定
+            - shared_at を設定
+            - Twitter投稿をpostsに登録
+        - action: "初期反応モニタリング"
+          description: |
+            公開後24時間・72時間のメトリクスを記録:
+            - PV推移
+            - いいね数
+            - コメント数
+            - Twitter反応
+        - action: "追加拡散判断"
+          description: |
+            反応が良い場合:
+            - 追加ツイート提案
+            - 関連記事からの内部リンク追加提案
+            反応が悪い場合:
+            - タイトル改善提案
+            - 要因分析
+      exit_criteria:
+        - "SNS拡散が完了している"
+        - "初期メトリクスが記録されている"
+
+    - id: analyzed
+      name: "分析済み"
+      description: "公開後の効果測定が完了した段階。"
+      great_sage_actions:
+        - action: "メトリクス収集"
+          description: |
+            以下のメトリクスを収集・記録:
+            - Zenn: PV, いいね, ブックマーク, コメント
+            - note: PV, スキ, コメント
+            - Twitter: インプレッション, いいね, RT, リプ
+        - action: "効果分析レポート"
+          description: |
+            分析項目:
+            - 目標PV vs 実績PV
+            - エンゲージメント率
+            - 流入経路分析
+            - 収益貢献度（テンプレ販売への導線効果）
+        - action: "学習・フィードバック"
+          description: |
+            パターン検知:
+            - 高パフォーマンス記事の共通点を抽出
+            - 低パフォーマンス記事の要因を分析
+            - 次回コンテンツへのフィードバックをbacklogに反映
+        - action: "月次レポート蓄積"
+          description: "/analytics/monthly-report.md に集約"
+      exit_criteria:
+        - "メトリクスが registry.yaml に反映されている"
+        - "学習ポイントがbacklogの優先度に反映されている"
+
+  # ---------------------------------------------------------------------------
+  # ステージ遷移ルール
+  # ---------------------------------------------------------------------------
+  transitions:
+    - from: idea
+      to: outline
+      trigger: "Director承認 or 大賢者の優先度判定でhigh"
+      auto: false
+
+    - from: outline
+      to: draft
+      trigger: "構成案が確定し、タスクが作成された"
+      auto: true
+
+    - from: draft
+      to: review
+      trigger: "下書きが完成し、メタデータが準備された"
+      auto: true
+
+    - from: review
+      to: published
+      trigger: "Director承認（公開はDirectorの判断）"
+      auto: false
+
+    - from: published
+      to: promoted
+      trigger: "SNS投稿が完了した"
+      auto: false
+
+    - from: promoted
+      to: analyzed
+      trigger: "公開後7日経過 or Director指示"
+      auto: false
+
+    # 例外遷移
+    - from: any
+      to: idea
+      trigger: "差し戻し（大幅な方針変更が必要な場合）"
+      auto: false
+
+    - from: draft
+      to: outline
+      trigger: "構成の見直しが必要な場合"
+      auto: false
+
+  # ---------------------------------------------------------------------------
+  # パイプライン全体のKPI
+  # ---------------------------------------------------------------------------
+  kpi:
+    throughput:
+      description: "月間公開記事数"
+      target:
+        zenn: 4  # 週1本
+        note: 2  # 月2本
+        twitter: 30  # 毎日1本
+    lead_time:
+      description: "アイデアから公開までの平均日数"
+      target_days: 5
+    quality:
+      description: "記事あたり平均いいね数"
+      target_likes: 10
+
+  # ---------------------------------------------------------------------------
+  # 自動化設定
+  # ---------------------------------------------------------------------------
+  automation:
+    # セッション開始時の自動チェック
+    on_session_start:
+      - "registry.yaml のメトリクスをMCP経由で更新"
+      - "content-calendar.md との差分チェック"
+      - "公開後7日以上未分析の記事を検知"
+
+    # 定期チェック（大賢者が能動的に実行）
+    periodic:
+      - interval: "weekly"
+        action: "週次コンテンツレポート生成"
+      - interval: "monthly"
+        action: "月次コンテンツ分析レポート生成"
+
+    # イベントトリガー
+    on_event:
+      - event: "新記事公開検知"
+        action: "registry更新 + SNS拡散文生成"
+      - event: "メトリクス閾値超過"
+        action: "高パフォーマンス通知 + 追加拡散提案"
+      - event: "バックログ枯渇"
+        action: "アイデア生成提案"

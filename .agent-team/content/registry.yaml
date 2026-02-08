@@ -1,0 +1,165 @@
+# =============================================================================
+# Content Registry - 大賢者管理下
+# =============================================================================
+# 全ての公開コンテンツを追跡するマスターレジストリ。
+# 大賢者がセッション開始時に参照し、MCP経由で最新状態を同期する。
+#
+# 更新ルール:
+#   - 大賢者のみが更新権限を持つ
+#   - 更新時は last_updated と updated_by を必ず書き換える
+#   - 手動編集禁止（大賢者経由で操作すること）
+# =============================================================================
+
+last_updated: "2026-02-08T00:00:00Z"
+updated_by: great-sage
+
+# -----------------------------------------------------------------------------
+# 記事エントリ共通スキーマ
+# -----------------------------------------------------------------------------
+# article_schema:
+#   id: string            # プラットフォーム固有ID or slug
+#   title: string         # 記事タイトル
+#   url: string           # 公開URL
+#   published_at: string  # ISO 8601 形式
+#   updated_at: string    # 最終更新日時
+#   status: enum          # draft | published | archived
+#   category: string      # tech | opinion | tutorial | report | book-chapter
+#   tags: list[string]    # タグ一覧
+#   metrics:
+#     pv: int             # ページビュー
+#     likes: int          # いいね数
+#     comments: int       # コメント数
+#     bookmarks: int      # ブックマーク数（Zenn固有）
+#   related_products: list[string]  # 関連製品パス（例: /products/agent-team）
+#   sns_shared: bool      # SNS拡散済みか
+#   shared_at: string     # 拡散日時（ISO 8601）
+#   local_path: string    # ローカルの下書きファイルパス
+#   notes: string         # 大賢者メモ
+
+# -----------------------------------------------------------------------------
+# プラットフォーム別コンテンツ
+# -----------------------------------------------------------------------------
+platforms:
+  zenn:
+    base_url: "https://zenn.dev"
+    username: ""  # Zennユーザー名を設定
+    articles:
+      - id: "00-project-journey"
+        title: "【実践記録】MCP + tmux でAIエージェントチームを作った話（失敗と発見）"
+        url: ""  # 未公開
+        published_at: null
+        updated_at: "2026-02-08T00:00:00Z"
+        status: draft
+        category: tech
+        tags:
+          - claude
+          - mcp
+          - ai
+          - tmux
+          - 個人開発
+        metrics:
+          pv: 0
+          likes: 0
+          comments: 0
+          bookmarks: 0
+        related_products:
+          - /agent-team
+        sns_shared: false
+        shared_at: null
+        local_path: "/marketing/zenn-articles/00-project-journey-draft.md"
+        notes: "初稿完成済み。公開前レビュー待ち。"
+
+    books:
+      # - id: "agent-team-guide"
+      #   title: "Claude Code Agent Team 実践ガイド"
+      #   url: ""
+      #   published_at: null
+      #   status: draft
+      #   price: 1500
+      #   chapters_total: 0
+      #   chapters_completed: 0
+      #   category: tech
+      #   tags: []
+      #   metrics:
+      #     pv: 0
+      #     likes: 0
+      #     sales: 0
+      #     revenue: 0
+      #   related_products:
+      #     - /agent-team
+      #   local_path: "/marketing/zenn-book/"
+      #   notes: ""
+
+    stats:
+      total_articles: 1
+      total_published_articles: 0
+      total_books: 0
+      total_likes: 0
+      total_pv: 0
+      last_synced: "2026-02-08T00:00:00Z"
+
+  note:
+    base_url: "https://note.com"
+    username: ""  # noteユーザー名を設定
+    articles: []
+    # エントリ例:
+    # - id: "note-article-001"
+    #   title: "AIに仕事を任せる時代の働き方"
+    #   url: ""
+    #   published_at: null
+    #   updated_at: null
+    #   status: draft
+    #   category: opinion
+    #   tags:
+    #     - AI
+    #     - 働き方
+    #   metrics:
+    #     pv: 0
+    #     likes: 0
+    #     comments: 0
+    #   related_products: []
+    #   sns_shared: false
+    #   shared_at: null
+    #   local_path: ""
+    #   notes: ""
+
+    stats:
+      total_articles: 0
+      total_published_articles: 0
+      total_likes: 0
+      last_synced: null
+
+  twitter:
+    base_url: "https://twitter.com"
+    username: ""  # Twitterユーザー名を設定
+    posts: []
+    # エントリ例:
+    # - id: "tweet-20260208-001"
+    #   content: "Build in Public 開始宣言..."
+    #   url: ""
+    #   posted_at: "2026-02-08T09:00:00Z"
+    #   type: single | thread | quote
+    #   tags:
+    #     - "#AIエージェント"
+    #     - "#ClaudeCode"
+    #     - "#BuildInPublic"
+    #   metrics:
+    #     impressions: 0
+    #     likes: 0
+    #     retweets: 0
+    #     replies: 0
+    #   related_article: null  # 紐づく記事ID
+    #   notes: ""
+
+    stats:
+      followers: 0
+      total_posts: 0
+      last_synced: null
+
+# -----------------------------------------------------------------------------
+# 関連パス
+# -----------------------------------------------------------------------------
+content_calendar_path: "/marketing/content-calendar.md"
+backlog_path: "/.agent-team/content/backlog.yaml"
+pipeline_path: "/.agent-team/content/content-pipeline.yaml"
+skill_path: "/.claude/skills/great-sage/content-manager.md"

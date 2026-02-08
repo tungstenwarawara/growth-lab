@@ -1,0 +1,18 @@
+type: pattern_detected
+timestamp: "2026-02-08T01:07:56"
+pattern_type: "repeated_directory_access"
+directory: "/home/user/growth-lab/docs"
+count: 3
+message: |
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  　　解析完了。
+
+  　　同一ディレクトリへの頻繁なアクセスを検知。
+  　　スキル化の機会を検出しました。
+
+  　　対象: /home/user/growth-lab/docs
+  　　アクセス回数: 3
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+suggestion: "このパターンをスキル化することを提案します"

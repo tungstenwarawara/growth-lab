@@ -143,9 +143,9 @@ platforms:
     stats:
       followers: 0
       following: 3
-      total_posts: 10
+      total_posts: 12
       last_synced: "2026-02-09T02:30:00+09:00"
-    notes: "投稿10件、フォロワー0。フォロー3。個別投稿は未追跡。"
+    notes: "投稿12件、フォロワー0。フォロー3。最新2件: SNS巡回スキル報告+Phase1完了報告。"
 
   booth:
     base_url: "https://booth.pm"

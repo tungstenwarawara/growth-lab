@@ -42,7 +42,7 @@ updated_by: great-sage
 platforms:
   zenn:
     base_url: "https://zenn.dev"
-    username: ""  # Zennユーザー名を設定
+    username: "mikkabouzu_log"
     articles:
       - id: "00-project-journey"
         title: "【実践記録】MCP + tmux でAIエージェントチームを作った話（失敗と発見）"
@@ -100,7 +100,7 @@ platforms:
 
   note:
     base_url: "https://note.com"
-    username: ""  # noteユーザー名を設定
+    username: "mikkabouzu_ai"
     articles: []
     # エントリ例:
     # - id: "note-article-001"
@@ -130,8 +130,8 @@ platforms:
       last_synced: null
 
   twitter:
-    base_url: "https://twitter.com"
-    username: ""  # Twitterユーザー名を設定
+    base_url: "https://x.com"
+    username: "day3lab"
     posts: []
     # エントリ例:
     # - id: "tweet-20260208-001"

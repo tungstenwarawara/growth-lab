@@ -1,0 +1,14 @@
+agent: marketing-strategist
+status: done
+current_task: booth-shop-setup
+progress: 100
+last_updated: "2026-02-08T00:00:00Z"
+notes: |
+  BOOTHショップ情報の設定内容を作成完了
+  - 3パターンのショップ説明文（親しみ/プロ/コンパクト）
+  - カテゴリ・タグ推奨
+  - 外部リンク設定案
+  - ショップポリシー案
+  - 商品説明サンプル
+deliverables:
+  - marketing/booth-shop-settings.md

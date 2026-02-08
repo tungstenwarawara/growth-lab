@@ -1,0 +1,12 @@
+type: skill_acquired
+timestamp: "2026-02-08T01:07:31"
+skill_name: "test-skill"
+message: |
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  　　告。
+
+  　　スキル『test-skill』を獲得しました。
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+source_file: "/home/user/growth-lab/.claude/skills/test-skill/SKILL.md"

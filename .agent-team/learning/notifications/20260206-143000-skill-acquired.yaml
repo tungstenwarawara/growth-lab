@@ -50,4 +50,4 @@ notification:
     - frontend
 
   delivered_at: "2026-02-06T14:30:00Z"
-  read: false
+  read: true

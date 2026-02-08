@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[Hook] PostToolUse triggered'"
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/great-sage-trigger.sh"
           }
         ]
       }

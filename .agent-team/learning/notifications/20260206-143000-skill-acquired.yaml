@@ -1,0 +1,53 @@
+# Great Sage Notification — スキル獲得通知
+# Generated: 2026-02-06T14:30:00Z
+
+notification:
+  id: "notif-20260206-143000"
+  type: skill_acquired
+
+  message:
+    style: great_sage
+
+    announcement: |
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+      　　解析完了。
+
+      　　スキル『画像最適化』を獲得しました。
+
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    details: |
+      ▶ スキル名: optimize-image
+      ▶ コマンド: /optimize-image
+      ▶ カテゴリ: frontend
+      ▶ 効果: 画像をWebP/AVIF形式に最適化
+      ▶ 推定効果: 月1.67時間の時間短縮
+
+    usage_hint: |
+      使用例:
+      /optimize-image ./public/hero.png --quality=80 --format=webp
+
+  skill:
+    name: "optimize-image"
+    command: "/optimize-image"
+    category: frontend
+    file_path: ".claude/commands/optimize-image.md"
+
+  acquisition:
+    proposal_id: "prop-20260206-001"
+    approved_by: lead
+    approved_at: "2026-02-06T14:25:00Z"
+
+  impact:
+    time_saved_per_use_minutes: 5
+    estimated_weekly_uses: 5
+    monthly_time_saved_hours: 1.67
+
+  delivered_to:
+    - director
+    - lead
+    - frontend
+
+  delivered_at: "2026-02-06T14:30:00Z"
+  read: false

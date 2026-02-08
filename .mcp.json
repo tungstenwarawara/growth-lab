@@ -1,0 +1,60 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/mcp.json",
+  "version": "1.0",
+  "description": "Agent Team Framework MCP Configuration",
+
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "description": "ファイルシステム操作（読み取り、書き込み、検索）"
+    },
+
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git", "."],
+      "description": "Git操作（コミット、ブランチ、差分）"
+    },
+
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "永続メモリ（セッション間でのデータ保持）"
+    }
+  },
+
+  "constraints": {
+    "maxServers": 10,
+    "maxTools": 80,
+    "notes": [
+      "MCPサーバーが多すぎるとコンテキストウィンドウが200Kから70K以下に縮小する",
+      "$200/月の予算を考慮してサーバー数を制限"
+    ]
+  },
+
+  "registry": {
+    "discovered": [
+      {
+        "name": "@anthropic/image-tools",
+        "category": "media",
+        "description": "画像処理ツール",
+        "priority": "low",
+        "installed": false
+      },
+      {
+        "name": "@anthropic/puppeteer",
+        "category": "automation",
+        "description": "ブラウザ自動化",
+        "priority": "low",
+        "installed": false
+      },
+      {
+        "name": "@anthropic/slack",
+        "category": "communication",
+        "description": "Slack連携（Director通知）",
+        "priority": "medium",
+        "installed": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,138 @@
+# Skill Acquisition Proposal
+# 提案ID: prop-20260206-001
+
+proposal:
+  id: "prop-20260206-001"
+  type: skill_acquisition
+  version: "1.0"
+
+  # スキル情報
+  skill:
+    name: "optimize-image"
+    slash_command: "/optimize-image"
+    category: frontend
+
+    description: |
+      画像ファイルを最適化するスキル。
+      WebP/AVIF 変換、品質調整、リサイズが可能。
+      sharp ライブラリを使用。
+
+    usage: |
+      /optimize-image <path> [--quality=85] [--format=webp]
+
+    # 実際に生成されるスキルファイルの内容
+    implementation: |
+      # /optimize-image
+
+      画像ファイルを最適化します。WebP/AVIF形式への変換、品質調整、リサイズが可能です。
+
+      ## 使い方
+
+      ```
+      /optimize-image <画像パス> [オプション]
+      ```
+
+      ## オプション
+
+      | オプション | 説明 | デフォルト |
+      |-----------|------|-----------|
+      | `--quality=<1-100>` | 品質（1-100） | 85 |
+      | `--format=<形式>` | 出力形式（webp, avif, png, jpg） | webp |
+      | `--width=<px>` | リサイズ幅 | 元のサイズ |
+      | `--height=<px>` | リサイズ高さ | 元のサイズ |
+      | `--output=<パス>` | 出力先 | 元のパスに拡張子変更 |
+
+      ## 例
+
+      ### 基本的な使い方
+      ```
+      /optimize-image ./public/hero.png
+      ```
+      → `./public/hero.webp` を生成（品質85%）
+
+      ### 品質を指定
+      ```
+      /optimize-image ./public/hero.png --quality=70
+      ```
+
+      ### AVIF形式で出力
+      ```
+      /optimize-image ./public/hero.png --format=avif --quality=60
+      ```
+
+      ### リサイズして最適化
+      ```
+      /optimize-image ./public/hero.png --width=800 --format=webp
+      ```
+
+      ## 処理内容
+
+      1. 指定された画像ファイルを読み込みます
+      2. sharp ライブラリで以下の処理を行います:
+         - 形式変換（WebP/AVIF/PNG/JPG）
+         - 品質調整
+         - リサイズ（指定時）
+      3. 最適化された画像を出力します
+      4. 最適化結果をレポートします:
+         - 元のサイズ
+         - 最適化後のサイズ
+         - 圧縮率
+
+      ## 依存関係
+
+      - `sharp` パッケージが必要です
+      - インストール: `npm install sharp`
+
+      ## 注意事項
+
+      - 元のファイルは上書きされません
+      - 大きな画像（10MB以上）は処理に時間がかかる場合があります
+      - AVIF形式は一部のブラウザで非対応です
+
+  # 検知の根拠
+  evidence:
+    detection_type: efficiency_opportunity
+
+    occurrences:
+      - task_id: "task-015"
+        date: "2026-02-04"
+        agent: frontend
+        action: "画像圧縮コードを手動で記述"
+
+      - task_id: "task-018"
+        date: "2026-02-05"
+        agent: frontend
+        action: "同様の画像処理コードを再度記述"
+
+      - task_id: "task-021"
+        date: "2026-02-06"
+        agent: frontend
+        action: "3回目の画像処理コード"
+
+    pattern_description: |
+      Frontend エージェントが画像最適化処理を3回以上手動で記述。
+      sharp ライブラリを使用したWebP変換が共通パターン。
+
+  # 効果の見積もり
+  impact:
+    time_saved_per_use_minutes: 5
+    estimated_weekly_uses: 5
+    monthly_time_saved_hours: 1.67
+    confidence: 0.92
+
+  # 承認情報
+  approval:
+    required_level: lead  # auto | lead | director
+    status: approved      # pending | approved | rejected
+    approved_by: lead
+    approved_at: "2026-02-06T14:25:00Z"
+    notes: "画像最適化の繰り返しパターンを確認。スキル化により効率化が期待できる。"
+
+  # メタデータ
+  created_by: lead
+  created_at: "2026-02-06T14:00:00Z"
+
+  # 生成先
+  target:
+    path: ".claude/commands/optimize-image.md"
+    type: skill_file

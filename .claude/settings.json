@@ -1,0 +1,53 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "teammateMode": "in-process",
+
+  "hooks": {
+    "preToolExecution": [
+      {
+        "matcher": "Write|Edit",
+        "command": "echo 'Pre-check: $FILE'",
+        "description": "ファイル変更前の確認（将来的に lint --fix を追加）"
+      }
+    ],
+    "postToolExecution": [
+      {
+        "matcher": "Write|Edit",
+        "command": "echo 'Post-check: $FILE'",
+        "description": "ファイル変更後の確認（将来的に typecheck を追加）"
+      }
+    ]
+  },
+
+  "permissions": {
+    "allowlist": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Write",
+      "Edit",
+      "Bash(git commit:*)",
+      "Bash(git add:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm run build:*)"
+    ],
+    "requireApproval": [
+      "Bash(git push:*)",
+      "Bash(rm -rf:*)"
+    ],
+    "notes": "高リスク操作は Director 承認必須"
+  },
+
+  "costOptimization": {
+    "preferredModels": {
+      "lead": "opus",
+      "implementer": "sonnet",
+      "reviewer": "haiku",
+      "explorer": "haiku"
+    },
+    "monthlyBudget": "$200",
+    "notes": "Haiku は Sonnet の 90% の性能を 3 倍のコスト削減で実現"
+  }
+}

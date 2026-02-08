@@ -1,0 +1,101 @@
+# Rate Limits for Self-Improvement Loop
+# 自己改善の頻度とコストを制限します
+
+version: "1.0"
+last_updated: "2026-02-06"
+
+# 日次制限
+daily_limits:
+  # 改善提案の上限
+  max_proposals: 10
+
+  # アクションタイプ別の上限
+  max_skill_additions: 3
+  max_instruction_updates: 5
+  max_pattern_registrations: 20
+  max_mcp_discoveries: 5
+
+  # リセット時刻（UTC）
+  reset_time: "00:00"
+
+# セッション制限
+session_limits:
+  # 1セッションあたりの提案上限
+  max_proposals: 5
+
+  # 却下後のクールダウン
+  cooldown_after_rejection_minutes: 60
+
+  # 連続失敗時の制限
+  max_consecutive_failures: 3
+  pause_after_failures_hours: 4
+
+# 予算制限（$200/月の範囲内）
+budget_limits:
+  # 1日あたりのトークン予算
+  # $200/月 = 約$6.67/日
+  # 自己改善には全体の5%程度を割り当て
+  max_daily_tokens: 50000           # 約$0.33/日
+
+  # アクション別のトークン見積もり
+  estimated_tokens:
+    trigger_detection: 500
+    context_analysis: 1500
+    proposal_generation: 2000
+    approval_processing: 500
+    execution_verification: 1000
+    pattern_learning: 1000
+
+  # 警告しきい値
+  warning_threshold_percent: 80     # 80%使用で警告
+
+  # 予算超過時のアクション
+  on_budget_exceeded:
+    - action: "pause_improvements"
+    - action: "notify_director"
+    - action: "log_usage_report"
+
+# 連続失敗時の振る舞い
+failure_handling:
+  # 同じタイプのエラーが続いた場合
+  repeated_failure:
+    threshold: 3
+    action: "escalate_to_director"
+    pause_similar_proposals: true
+
+  # 全体的な失敗率が高い場合
+  high_failure_rate:
+    threshold_percent: 50           # 50%以上が失敗
+    window_size: 10                 # 直近10件
+    action: "pause_all_improvements"
+    notify: director
+
+# クォータ管理
+quota_tracking:
+  # 使用状況の記録先
+  usage_file: ".agent-team/learning/usage/daily-usage.yaml"
+
+  # 履歴保持期間
+  history_retention_days: 30
+
+  # レポート生成
+  generate_daily_report: true
+  report_file: ".agent-team/learning/usage/daily-report.yaml"
+
+# 優先度による調整
+priority_adjustments:
+  # 高優先度の改善は制限を緩和
+  high_priority:
+    daily_limit_multiplier: 1.5
+    cooldown_reduction_percent: 50
+
+  # 低優先度は予算不足時にスキップ
+  low_priority:
+    skip_below_budget_percent: 30   # 予算30%以下でスキップ
+
+# 時間帯による調整（オプション）
+time_based_adjustments:
+  enabled: false
+  # 深夜帯は制限を緩和（実験用）
+  # night_hours: "00:00-06:00"
+  # night_limit_multiplier: 2.0

@@ -4,6 +4,16 @@ MCP + tmux ハイブリッドアーキテクチャによる Claude Code マル�
 
 「チーム」メタファーで、複数の Claude Code インスタンスが **並列で自律的に** タスクを遂行します。
 
+> **v0.2 New**: Claude Code 公式 Agent Teams 機能との統合をサポート
+
+## 実行モード
+
+| モード | 環境 | 特徴 |
+|--------|------|------|
+| **tmux モード** | ローカルターミナル | 視覚的な4ペイン、手動切り替え |
+| **Official Agent Teams** | Claude Code 2.1+ | 自動オーケストレーション、タスク共有 |
+| **SDK サブエージェント** | Claude Agent SDK | Task ツールによる並列実行 |
+
 ## 特徴
 
 - **チームメタファー** — Director → Lead → Members → Reviewer のフラットな構造
@@ -156,6 +166,116 @@ current_task: "001"
 | ペイン切り替え | `Ctrl+B` → 矢印キー |
 | ペイン一覧 | `Ctrl+B` → `Q` |
 | 全ペイン同時入力 | `Ctrl+B` → `:setw synchronize-panes on` |
+
+---
+
+## 公式 Agent Teams 連携（v0.2）
+
+Claude Code 2.1+ には公式のマルチエージェント機能が搭載されています。
+このフレームワークのロール定義・通信プロトコルと組み合わせて使用できます。
+
+### セットアップ
+
+```bash
+# 1. 環境変数で有効化
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+
+# または .claude/settings.json に設定
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "teammateMode": "in-process"
+}
+```
+
+### カスタムエージェント定義
+
+`.claude/agents/` にロール定義を配置:
+
+```
+.claude/agents/
+├── team-lead.md       # Team Lead
+├── frontend-member.md # Frontend Developer
+├── backend-member.md  # Backend Developer
+└── reviewer.md        # Code Reviewer
+```
+
+### 使用方法
+
+```bash
+# エージェントを指定して起動
+claude --agent team-lead
+
+# または JSON で動的に定義
+claude --agents '{
+  "lead": {
+    "description": "Team Lead for task coordination",
+    "prompt": "You are the Team Lead...",
+    "model": "sonnet"
+  },
+  "reviewer": {
+    "description": "Code reviewer for quality checks",
+    "prompt": "You are the Reviewer...",
+    "model": "haiku"
+  }
+}'
+```
+
+### チーム起動（自然言語）
+
+```bash
+claude "Create a dev team with:
+- Lead to coordinate tasks
+- Frontend to build UI
+- Backend to implement API
+- Reviewer to check code quality
+
+Use YAML files in .agent-team/ for communication."
+```
+
+### tmux モード vs 公式 Agent Teams
+
+| 観点 | tmux モード | 公式 Agent Teams |
+|------|-------------|------------------|
+| **視認性** | 4ペイン同時表示 | シングル表示 + 切り替え |
+| **自動化** | 手動切り替え | 自動オーケストレーション |
+| **タスク共有** | ファイルベース | 組み込みタスクリスト |
+| **コンテキスト** | 各ペイン独立 | 各チームメイト独立 |
+| **セットアップ** | スクリプト実行 | 自然言語で起動 |
+
+**推奨**:
+- 視覚的に監視したい場合 → **tmux モード**
+- 自動化を重視する場合 → **公式 Agent Teams**
+- 両方の利点が欲しい場合 → **tmux + 公式機能の併用**
+
+---
+
+## SDK サブエージェント連携
+
+Claude Agent SDK 環境では、Task ツールがサブエージェントとして動作します。
+
+```typescript
+// Task ツールでメンバーを並列起動
+const [frontendResult, backendResult] = await Promise.all([
+  task({
+    subagent_type: "Explore",
+    description: "Frontend implementation",
+    prompt: "Implement the login form component...",
+    model: "haiku"
+  }),
+  task({
+    subagent_type: "Explore",
+    description: "Backend implementation",
+    prompt: "Implement the auth API endpoint...",
+    model: "haiku"
+  })
+]);
+```
+
+この方法は Web 環境やサンドボックス環境でも動作します。
+
+---
 
 ## ライセンス
 

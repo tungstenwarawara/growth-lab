@@ -1,0 +1,110 @@
+# Trigger: Efficiency Opportunity Detection
+# 効率化できるパターンを検知するトリガー
+
+trigger:
+  id: "efficiency-opportunity"
+  name: "効率化機会検知"
+  description: "繰り返しパターンを検知し、スキル化・自動化を提案"
+  priority: medium
+  enabled: true
+
+# 検知条件
+detection:
+  # 繰り返しパターンの検知
+  repetition:
+    # 同じ操作の繰り返し回数
+    min_occurrences: 3
+    # 検知ウィンドウ
+    time_window: "7d"
+    # 類似度しきい値
+    similarity_threshold: 0.7
+
+  # 検知対象のパターンタイプ
+  pattern_types:
+    - type: "code_snippet"
+      description: "同じコードスニペットの繰り返し生成"
+      min_lines: 5
+
+    - type: "file_operation"
+      description: "同じファイル操作の繰り返し"
+      operations: ["create", "modify", "read"]
+
+    - type: "command_sequence"
+      description: "同じコマンドシーケンスの繰り返し"
+      min_commands: 2
+
+    - type: "workflow"
+      description: "同じワークフローの繰り返し"
+      min_steps: 3
+
+  # 効率化の価値推定
+  value_estimation:
+    # 推定節約時間（分）× 頻度 で価値を計算
+    min_value_score: 10  # 最低10ポイント以上で提案
+
+# トリガー発火時のアクション
+actions:
+  - action: "log_event"
+    params:
+      event_type: "efficiency_opportunity"
+      include_pattern_details: true
+
+  - action: "analyze_pattern"
+    params:
+      extract_common_elements: true
+      identify_variables: true
+
+  - action: "generate_skill_proposal"
+    params:
+      skill_type: "auto"  # auto | command | template
+      include_code_template: true
+
+  - action: "create_proposal"
+    params:
+      proposal_type: "add_skill"
+      auto_approve: false
+      required_approval: "lead"
+
+# スキル生成の設定
+skill_generation:
+  # スキルのテンプレート
+  template_path: ".agent-team/learning/skills/templates/"
+
+  # 生成されるスキルの形式
+  output_format: "markdown"  # .claude/commands/*.md
+
+  # 必須セクション
+  required_sections:
+    - "Usage"
+    - "Steps"
+    - "Example"
+
+  # オプションセクション
+  optional_sections:
+    - "Requirements"
+    - "Options"
+    - "Notes"
+
+# 学習データ記録
+learning:
+  # パターンとして登録
+  create_pattern: true
+  pattern_category: "efficiency"
+
+  # 使用回数の追跡
+  track_usage: true
+
+  # 有効性スコアの更新
+  update_effectiveness: true
+  effectiveness_metrics:
+    - time_saved
+    - error_reduction
+    - usage_count
+
+# フィードバックループ
+feedback:
+  # スキル使用後のフィードバック収集
+  collect_after_use: true
+  feedback_questions:
+    - "このスキルは役に立ちましたか？"
+    - "改善点はありますか？"

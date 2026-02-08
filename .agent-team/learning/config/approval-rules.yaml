@@ -1,0 +1,133 @@
+# Approval Rules for Self-Improvement Loop
+# 改善提案の承認フローを定義します
+
+version: "1.0"
+last_updated: "2026-02-06"
+
+# 承認レベルの定義
+approval_levels:
+  auto:
+    description: "自動承認（低リスク）"
+    approver: system
+
+  lead:
+    description: "Team Lead 承認（中リスク）"
+    approver: lead
+    timeout_hours: 24
+
+  director:
+    description: "Director（人間）承認（高リスク）"
+    approver: director
+    timeout_hours: 48
+
+  forbidden:
+    description: "実行禁止"
+    approver: none
+
+# 自動承認ルール
+auto_approve:
+  conditions:
+    - description: "学習データへの追加"
+      path_pattern: ".agent-team/learning/**"
+      change_type: ["add", "modify"]
+      max_lines: 100
+
+    - description: "パターン登録"
+      path_pattern: ".agent-team/learning/patterns/**"
+      change_type: ["add"]
+      max_lines: 200
+
+    - description: "イベント記録"
+      path_pattern: ".agent-team/learning/events/**"
+      change_type: ["add"]
+
+  exclusions:
+    - path_pattern: ".agent-team/learning/config/**"  # 設定は自動承認しない
+
+# Lead 承認ルール
+lead_approve:
+  conditions:
+    - description: "新しいスキルの追加"
+      path_pattern: ".claude/commands/**"
+      change_type: ["add"]
+      max_lines: 300
+
+    - description: "プロンプトテンプレートの追加"
+      path_pattern: ".claude/prompts/**"
+      change_type: ["add"]
+      max_lines: 200
+
+    - description: "パターンの更新"
+      path_pattern: ".agent-team/learning/patterns/**"
+      change_type: ["modify"]
+
+  notification:
+    channel: ".agent-team/messages/"
+    template: "approval-request-lead.yaml"
+
+# Director 承認ルール
+director_approve:
+  conditions:
+    - description: "エージェント定義の変更"
+      path_pattern: ".claude/agents/**"
+
+    - description: "ロール定義の変更"
+      path_pattern: "agent-team/templates/**/roles/**"
+
+    - description: "スクリプトの変更"
+      path_pattern: "agent-team/scripts/**"
+
+    - description: "MCP 設定の変更"
+      path_pattern: "**/mcp*.json"
+
+    - description: "既存スキルの変更"
+      path_pattern: ".claude/commands/**"
+      change_type: ["modify", "delete"]
+
+    - description: "設定ファイルの変更"
+      path_pattern: ".agent-team/learning/config/**"
+
+  notification:
+    channel: ".agent-team/messages/"
+    template: "approval-request-director.yaml"
+    # 将来的には Slack/Discord 通知も可能
+    # slack_webhook: "${SLACK_WEBHOOK_URL}"
+
+# 承認プロセス
+approval_process:
+  # 提案が作成されたら
+  on_proposal_created:
+    - action: "determine_approval_level"
+    - action: "create_approval_request"
+    - action: "notify_approver"
+
+  # 承認されたら
+  on_approved:
+    - action: "execute_change"
+    - action: "create_git_commit"
+    - action: "record_in_history"
+    - action: "update_patterns"
+
+  # 却下されたら
+  on_rejected:
+    - action: "move_to_rejected"
+    - action: "record_rejection_reason"
+    - action: "learn_from_rejection"  # 何が却下されたかを学習
+
+  # タイムアウトしたら
+  on_timeout:
+    - action: "escalate_to_director"
+    - action: "notify_timeout"
+
+# 承認リクエストのテンプレート
+templates:
+  approval_request:
+    format: yaml
+    required_fields:
+      - proposal_id
+      - proposal_type
+      - target_files
+      - reason
+      - proposed_changes
+      - risk_level
+      - estimated_impact

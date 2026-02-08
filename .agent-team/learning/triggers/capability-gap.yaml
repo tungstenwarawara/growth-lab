@@ -1,0 +1,71 @@
+# Trigger: Capability Gap Detection
+# 必要な機能がないことを検知するトリガー
+
+trigger:
+  id: "capability-gap"
+  name: "機能ギャップ検知"
+  description: "エージェントが必要な機能を持っていないことを検知"
+  priority: high
+  enabled: true
+
+# 検知パターン
+detection:
+  # 発話パターン（エージェントの出力から検知）
+  speech_patterns:
+    - pattern: "このツールがあれば"
+      weight: 0.8
+    - pattern: "MCPサーバーが必要"
+      weight: 0.9
+    - pattern: "この機能がない"
+      weight: 0.7
+    - pattern: "手動で実行する必要がある"
+      weight: 0.6
+    - pattern: "現在のツールでは難しい"
+      weight: 0.7
+    - pattern: "外部ツールを使って"
+      weight: 0.5
+
+  # エラーパターン（実行エラーから検知）
+  error_patterns:
+    - pattern: "Tool not found"
+      weight: 1.0
+    - pattern: "MCP server .* not available"
+      weight: 1.0
+    - pattern: "Command not found"
+      weight: 0.9
+    - pattern: "No such tool"
+      weight: 0.9
+
+  # しきい値（重み付き合計がこれを超えたら発火）
+  threshold: 0.7
+
+# トリガー発火時のアクション
+actions:
+  - action: "log_event"
+    params:
+      event_type: "capability_gap"
+      include_context: true
+
+  - action: "search_mcp_registry"
+    params:
+      search_local: true
+      search_remote: false  # Phase 1 ではローカルのみ
+
+  - action: "create_proposal"
+    params:
+      proposal_type: "add_capability"
+      auto_approve: false
+
+# 追加コンテキスト収集
+context_collection:
+  # 直近のタスク情報
+  include_current_task: true
+  # エラーログ
+  include_error_log: true
+  # 試行した操作
+  include_attempted_operations: true
+
+# クールダウン（同じギャップを連続検知しない）
+cooldown:
+  duration_minutes: 30
+  key_field: "detected_gap"  # 同じギャップIDならスキップ

@@ -1,0 +1,55 @@
+# Daily Usage Tracking
+# Self-Improvement Loop の使用状況を追跡
+
+version: "1.0"
+tracking_date: "2026-02-06"
+
+# 本日の使用状況
+today:
+  proposals:
+    created: 1
+    approved: 1
+    rejected: 0
+    pending: 0
+
+  actions:
+    skill_additions: 1      # /optimize-image を獲得
+    instruction_updates: 0
+    pattern_registrations: 0
+    mcp_discoveries: 0
+
+  tokens:
+    estimated_used: 5000    # 提案生成・承認処理
+    budget_remaining: 45000
+
+  triggers:
+    capability_gap: 0
+    repeated_failure: 0
+    efficiency_opportunity: 1  # optimize-image 検知
+
+# 制限状況
+limits:
+  daily_proposals:
+    used: 0
+    max: 10
+
+  skill_additions:
+    used: 0
+    max: 3
+
+  instruction_updates:
+    used: 0
+    max: 5
+
+# エラー・警告
+issues:
+  errors: []
+  warnings: []
+
+# 累積統計（月次）
+monthly_cumulative:
+  proposals_created: 0
+  proposals_approved: 0
+  skills_added: 0
+  patterns_registered: 0
+  estimated_time_saved_minutes: 0

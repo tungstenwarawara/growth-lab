@@ -223,10 +223,90 @@ Before building any new product, verify:
 - `/docs/strategy.md` — Master strategy document (v2: Agent Team pivot)
 - `/docs/brand-guide.md` — Brand guidelines
 - `/docs/playbooks/` — Operational playbooks
+- `/docs/feature-inventory.md` — 機能一覧（動作確認状況）
 - `/marketing/content-calendar.md` — Content schedule
 - `/analytics/kpi-dashboard.md` — KPI tracking
 
 ---
 
-*Last updated: 2026-02*
+## 大賢者（Great Sage）システム
+
+転生したらスライムだった件の「大賢者」をモチーフにした自己改善エンジン。
+Claude が自律的にパターンを検知し、スキル化を提案する。
+
+### コンセプト
+
+```
+リムル = ユーザー（Director）
+大賢者 = Claude（自律的に補佐）
+スキル吸収 = パターン検知 → スキル化
+国づくり = コミュニティ構築（最終目標）
+```
+
+### 自動発動トリガー
+
+| トリガー | 条件 | 通知 |
+|---------|------|------|
+| スキル獲得 | `.claude/skills/` or `.claude/commands/` に書き込み | 「告。スキル『○○』を獲得しました」|
+| パターン検知 | 同一ディレクトリに3回以上書き込み | 「解析完了。スキル化の機会を検出」|
+| 学習データ更新 | `.agent-team/learning/` に書き込み | 「学習データを更新しました」|
+
+### セッション開始時
+
+未読通知があれば自動で表示：
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+　　告。
+
+　　マスター、お帰りなさい。
+　　3件の未読通知があります。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+### 通知の確認
+
+```bash
+# 未読通知を確認
+ls .agent-team/learning/notifications/
+
+# 通知内容を読む
+cat .agent-team/learning/notifications/*.yaml
+```
+
+### 関連ファイル
+
+| ファイル | 役割 |
+|---------|------|
+| `.claude/hooks/great-sage-trigger.sh` | PostToolUse で自動実行 |
+| `.claude/hooks/great-sage-session-start.sh` | SessionStart で未読通知表示 |
+| `.claude/settings.json` | Hooks 設定 |
+| `.agent-team/learning/notifications/` | 通知 YAML 保存先 |
+| `.agent-team/learning/detected-patterns.log` | パターン検知ログ |
+
+---
+
+## 利用可能なエージェント
+
+Task ツールで以下のエージェントを起動できる：
+
+| エージェント | 役割 | 使用例 |
+|-------------|------|--------|
+| `team-lead` | プロジェクト統括、タスク分解 | 大きな機能の計画 |
+| `frontend-member` | UI/UX 実装 | React コンポーネント作成 |
+| `backend-member` | API/DB 実装 | Supabase 連携 |
+| `reviewer` | コードレビュー | 品質・セキュリティ検証 |
+
+### 使用例
+
+```
+「reviewer エージェントで portfolio/ をレビューして」
+→ Task ツールで reviewer を起動、詳細なレビューを返す
+```
+
+---
+
+*Last updated: 2026-02-08*
 *Strategy: v2 — AI Agent Team Framework + Services*
+*Feature: 大賢者（Great Sage）自律動作システム実装済み*

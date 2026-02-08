@@ -5,18 +5,26 @@
   "teammateMode": "in-process",
 
   "hooks": {
-    "preToolExecution": [
+    "PreToolUse": [
       {
         "matcher": "Write|Edit",
-        "command": "echo 'Pre-check: $FILE'",
-        "description": "ファイル変更前の確認（将来的に lint --fix を追加）"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] PreToolUse triggered'"
+          }
+        ]
       }
     ],
-    "postToolExecution": [
+    "PostToolUse": [
       {
         "matcher": "Write|Edit",
-        "command": "echo 'Post-check: $FILE'",
-        "description": "ファイル変更後の確認（将来的に typecheck を追加）"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] PostToolUse triggered'"
+          }
+        ]
       }
     ]
   },

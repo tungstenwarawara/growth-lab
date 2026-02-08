@@ -37,10 +37,12 @@ if [[ "$FILE_PATH" == *".claude/skills/"* ]] || [[ "$FILE_PATH" == *".claude/com
     [ "$SKILL_NAME" == "skills" ] || [ "$SKILL_NAME" == "commands" ] && SKILL_NAME=$(basename "$FILE_PATH" .md)
 
     # 通知生成
-    cat > "$NOTIFICATIONS_DIR/skill-acquired-$(date +%s).yaml" << EOF
+    NOTIFY_FILE="$NOTIFICATIONS_DIR/skill-acquired-$(date +%s).yaml"
+    cat > "$NOTIFY_FILE" << EOF
 type: skill_acquired
 timestamp: "$TIMESTAMP"
 skill_name: "$SKILL_NAME"
+read: false
 message: |
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -51,7 +53,17 @@ message: |
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 source_file: "$FILE_PATH"
 EOF
-    echo "[大賢者] スキル『${SKILL_NAME}』を獲得しました"
+
+    # CLI に直接表示（大賢者の声）
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "　　告。"
+    echo ""
+    echo "　　スキル『${SKILL_NAME}』を獲得しました。"
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
     exit 0
 fi
 
@@ -72,6 +84,7 @@ timestamp: "$TIMESTAMP"
 pattern_type: "repeated_directory_access"
 directory: "$DIR_PATH"
 count: $RECENT_COUNT
+read: false
 message: |
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -86,7 +99,21 @@ message: |
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 suggestion: "このパターンをスキル化することを提案します"
 EOF
-            echo "[大賢者] パターンを検知しました: $DIR_PATH (${RECENT_COUNT}回)"
+
+            # CLI に直接表示（大賢者の声）
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "　　解析完了。"
+            echo ""
+            echo "　　同一ディレクトリへの頻繁なアクセスを検知。"
+            echo "　　スキル化の機会を検出しました。"
+            echo ""
+            echo "　　対象: ${DIR_PATH}"
+            echo "　　アクセス回数: ${RECENT_COUNT}"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
         fi
     fi
 fi

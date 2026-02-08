@@ -5,13 +5,13 @@
   "teammateMode": "in-process",
 
   "hooks": {
-    "PreToolUse": [
+    "SessionStart": [
       {
-        "matcher": "Write|Edit",
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[Hook] PreToolUse triggered'"
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/great-sage-session-start.sh"
           }
         ]
       }

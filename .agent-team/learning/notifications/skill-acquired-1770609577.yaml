@@ -1,7 +1,7 @@
 type: skill_acquired
 timestamp: "2026-02-09T03:59:37"
 skill_name: "great-sage"
-read: false
+read: true
 message: |
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

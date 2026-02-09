@@ -1,0 +1,99 @@
+# =============================================================================
+# 改善提案 — 大賢者生成
+# =============================================================================
+# registry.yaml の既存データに基づく分析結果
+# Chrome MCP 未接続のため、蓄積データ + 一般的なSNS運用知見から生成
+# =============================================================================
+
+date: "2026-02-09"
+generated_by: great-sage
+data_source: registry.yaml  # Chrome MCP巡回ではなく蓄積データから生成
+
+# 現状サマリー
+current_state:
+  booth:
+    products: 1
+    sales: 0
+    revenue: 0
+  zenn:
+    published_articles: 2
+    total_likes: 0
+    total_pv: 0  # 要実データ確認
+  note:
+    published_articles: 9
+    total_likes: 11
+    followers: 2
+  x:
+    posts: 12
+    followers: 0
+    top_views: 23  # BOOTH告知投稿
+
+proposals:
+  - id: 1
+    priority: high
+    category: funnel
+    platform: cross
+    title: "全プラットフォーム間の相互リンクを整備する"
+    current: |
+      各プラットフォームが独立して存在。Zenn記事からBOOTHへの導線、
+      note記事からZennへの導線が未整備。Xプロフィールにも
+      リンクツリー的な導線がない。フォロワー0の最大の原因。
+    suggestion: |
+      1. X プロフィールに Zenn/BOOTH/note のリンクを追加（lit.link等の活用検討）
+      2. Zenn 記事末尾に BOOTH 商品リンク + X アカウントの宣伝を追加
+      3. note 記事末尾に Zenn 技術記事への誘導を追加
+      4. BOOTH 商品説明に Zenn 記事（技術的な裏側）へのリンクを追加
+    expected_impact: "認知→購買の導線確立。各プラットフォームの数字が相互に増幅"
+    effort: low
+    status: pending
+
+  - id: 2
+    priority: high
+    category: content
+    platform: x
+    title: "X投稿の量と質を改善する（Build in Public 戦略）"
+    current: |
+      12投稿で0フォロワー。投稿内容が告知中心で、
+      共感・発見・学びを提供する投稿が不足。
+      最高23 Viewsは低すぎる。ハッシュタグ戦略も不明。
+    suggestion: |
+      1. 投稿カテゴリを3種に分ける:
+         - 数字公開（売上/PV/フォロワー推移）→ Build in Public の核
+         - 学び共有（開発で得た知見、失敗談）→ エンジニア共感
+         - 成果報告（新機能/新記事/新商品）→ 告知
+      2. ハッシュタグ固定セットを使う:
+         #個人開発 #BuildInPublic #ClaudeCode #AIエージェント
+      3. 投稿頻度: 最低1日1投稿（朝7-8時 or 夜20-22時）
+      4. スレッド形式で開発ログを書く（単発より反応が良い）
+    expected_impact: "3ヶ月で50-100フォロワー。認知の入口として機能し始める"
+    effort: low
+    status: pending
+
+  - id: 3
+    priority: medium
+    category: product
+    platform: booth
+    title: "BOOTH商品ページの訴求力を強化する"
+    current: |
+      SaaS Starter Kit ¥5,000で出品中だが販売数0。
+      商品説明文やスクリーンショットの訴求力、
+      価格設定の妥当性を検証できていない。
+    suggestion: |
+      1. 商品説明に「何が含まれるか」のチェックリストを追加
+         - 認証（Supabase Auth）✅
+         - 決済（Stripe）✅
+         - ダッシュボード ✅
+         - 管理画面 ✅
+      2. デモサイトURL or スクリーンショット3-5枚を追加
+      3. ¥500 のお試し版（認証のみ）を追加して価格障壁を下げる
+      4. 「このテンプレートで作れるもの」の具体例を3つ記載
+    expected_impact: "CVR改善。¥500版がフック商品として機能すれば初売上に直結"
+    effort: medium
+    status: pending
+
+# 次回巡回時の確認事項
+next_check:
+  - Zenn 2記事の実PV/いいね数を確認（Chrome MCP 必要）
+  - note 新記事のスキ数を確認
+  - X フォロワー数の変動確認
+  - BOOTH 売上の確認（管理画面ログイン必要）

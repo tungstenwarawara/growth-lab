@@ -3,7 +3,7 @@ timestamp: "2026-02-08T01:38:06"
 pattern_type: "repeated_directory_access"
 directory: "/home/user/growth-lab"
 count: 10
-read: false
+read: true
 message: |
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
